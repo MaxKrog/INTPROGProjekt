@@ -10,21 +10,21 @@ var mongoURI = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || "mongodb:/
 mongoose.connect(mongoURI);
 
 
-//LOGGING
+//LOGGING. Like "GET /api/tracks. Returned 200"
 var logger = require("morgan");
 app.use(logger("dev"));
 
-//BODYPARSING
+//BODYPARSING. Exposes req.body, where you can get params sent etc.
 var bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 
-//API
+//API Routes all the traffic to /api/ to the file ./api/Router.
 var apiRouter = require("./api/Router");
 app.use("/api", apiRouter);
 
-//ERROR LOGGER
+//ERROR LOGGER If the request hasnt been answered yet, some error occured.
 app.use(function(err, req, res, next) {
 	console.log("This error hit the logger.");
 	console.log(err);
@@ -32,9 +32,6 @@ app.use(function(err, req, res, next) {
 	res.send(err.responseJSON || err);
 });
 
-var port = process.env.PORT || 3000;
-app.set('port', port);
-
-var server = app.listen(app.get('port'), function() {
+var server = app.listen(3000, function() {
   console.log('Express server listening on port ' + server.address().port);
 });
