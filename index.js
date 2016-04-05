@@ -4,20 +4,18 @@ var app = express();
 app.use(express.static('client'));
 //MONGOOSE
 var mongoose = require("mongoose");
-
 mongoose.set("debug", true);
 var mongoURI = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || "mongodb://localhost/TracklistDB";
 mongoose.connect(mongoURI);
-
-
-//LOGGING. Like "GET /api/tracks. Returned 200"
-var logger = require("morgan");
-app.use(logger("dev"));
 
 //BODYPARSING. Exposes req.body, where you can get params sent etc.
 var bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
+
+//LOGGING. Like "GET /api/tracks. Returned 200"
+var logger = require("morgan");
+app.use(logger("dev"));
 
 
 //API Routes all the traffic to /api/ to the file ./api/Router.

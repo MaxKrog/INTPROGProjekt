@@ -4,11 +4,18 @@ var TrackSchema = new Schema({
     title: {type: String},
     artist: {type: String},
     genre: {type: String},
-    links: {
-    	spotify: String,
-    	soundcloud: String,
-    	youtube: String
-    }
+    length: String,
+	spotify: String,
+	soundcloud: String,
+	youtube: String
+}, {
+	toObject: {
+		virtuals: true
+	}, 
+	toJSON: {
+		virtuals: true
+	}
 });
 
+TrackSchema.virtual("type").get(function(){ return "track" });
 module.exports = mongoose.model('Track', TrackSchema);

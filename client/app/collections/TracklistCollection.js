@@ -2,7 +2,9 @@ var $ = require("jquery");
 var Backbone = require("backbone");
 Backbone.$ = $;
 
-module.export = Backbone.Collection.extend({
+var TracklistModel = require("../models/TracklistModel.js");
+
+module.exports = Backbone.Collection.extend({
 
 	model: TracklistModel,
 

@@ -1,3 +1,5 @@
+var React = require("react");
+
 
 var AppearsInRow = React.createClass({
 
@@ -17,7 +19,7 @@ var TrackInfoCell = React.createClass({
 	render: function(){
 
 		return (
-			<h4>{this.props.field}:</h4> {this.props.value}
+			<h4>{this.props.field}:{this.props.value}</h4> 
 		);
 	}
 });
@@ -40,13 +42,13 @@ var TrackInfo = React.createClass({
 
 });
 
-var TrackListTable = React.createClass({
+module.exports = React.createClass({
 	
 	render: function(){
 		var rows = [];
 
 		this.props.tracklists.forEach(function(tracklist) {
-			rows.push(<FrontTrackListRow name={tracklist.name} />);
+			rows.push(<FrontTrackListRow name={tracklist.get("title")} />);
 		});
 
 		return (

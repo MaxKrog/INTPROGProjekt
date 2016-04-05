@@ -10,11 +10,10 @@ module.exports = Backbone.Model.extend({
 		title: null,
 		artist: null,
 		genre: null,
-		links: {
-			spotify: null,
-			soundcloud: null,
-			youtube: null
-		}
+		spotify: null,
+		soundcloud: null,
+		youtube: null,
+		type: "tracklist"
 	},
 
 	urlRoot: "api/tracklist",

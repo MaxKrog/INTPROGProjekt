@@ -1,49 +1,33 @@
 var React = require("react");
 
+//VIEWS:
+var FormInputView = require("./FormInputView.jsx");
+
 
 module.exports = React.createClass({
 
+	propTypes: {
+		model: React.PropTypes.object.isRequired, //A Backbone-Model
+		collection: React.PropTypes.object.isRequired, //A Backbone-Collection
+		keys: React.PropTypes.array.isRequired
+	},
+	submit: function(e){
+		e.preventDefault();
+		console.log(this.props.model.toJSON());
+		this.props.collection.create(this.props.model);
+	},
 	render: function(){
-		
-		var style = "padding:0;margin:0";
+		var _this = this;
+
+		var inputs = this.props.keys.map(function(key){
+			return <FormInputView model={_this.props.model} key={key} keyName={key} />
+		});
+
 		return(
 			<form className="form-horizontal">
-				<div className="form-group col-xs-6" style={{style}}>
-					<label  className="col-xs-4 control-label">Title</label>
-					<div className="col-xs-8">
-						<input type="text" className="form-control" placeholder="Title"/>
-				</div>
-				</div>
-					<div className="form-group col-xs-6">
-						<label className="col-xs-4 control-label">Artist</label>
-						<div className="col-xs-8">
-						<input type="text" className="form-control" placeholder="Artist" />
-					</div>
-				</div>
-				<div className="form-group col-xs-6">
-					<label  className="col-xs-4 control-label">Length</label>
-					<div className="col-xs-8">
-						<input type="text" className="form-control" placeholder="Length"/>
-				</div>
-				</div>
-					<div className="form-group col-xs-6">
-						<label className="col-xs-4 control-label">Label</label>
-						<div className="col-xs-8">
-						<input type="text" className="form-control" placeholder="Label" />
-					</div>
-				</div>
-				<div className="form-group col-xs-6">
-					<label  className="col-xs-4 control-label">Genre</label>
-					<div className="col-xs-8">
-						<input type="text" className="form-control" placeholder="Genre"/>
-				</div>
-				</div>
-					<div className="form-group col-xs-6">
-						<label className="col-xs-4 control-label">Year</label>
-						<div className="col-xs-8">
-						<input type="text" className="form-control" placeholder="Year" />
-					</div>
-				</div>
+				{inputs}
+
+				<button className="btn btn-default" onClick={this.submit}> Submit </button>
 			</form>
 		)
 	}

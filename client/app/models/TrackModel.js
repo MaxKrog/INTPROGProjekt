@@ -10,17 +10,16 @@ module.exports = Backbone.Model.extend({
 		title: null,
 		artist: null,
 		genre: null,
-		links: {
-			spotify: null,
-			soundcloud: null,
-			youtube: null
-		}
+		length: null,
+		spotify: null,
+		soundcloud: null,
+		youtube: null,
+		type: "track"
 	},
 
 	urlRoot: "api/track",
 
 	initialize: function(){
-		console.log("I am a trackmodel:");
-		console.log(this);
+
 	}
 })

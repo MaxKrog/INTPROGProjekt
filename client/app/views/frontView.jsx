@@ -1,24 +1,32 @@
+var React = require("react");
 
-var TrackListRow = React.createClass({
+var FrontTrackListRow = React.createClass({
 
 	render: function(){
 		
 		return (
 			<tr>
-				<td>{icon}</td>
 				<td>{this.props.name}</td>
+				<td></td>
 			</tr>
 		);
 	}
 });
 
-var TrackListTable = React.createClass({
+module.exports =  React.createClass({
+
+	componentWillMount: function() {
+		var _this = this;
+		this.props.tracklists.on("all", function() {
+			_this.forceUpdate();
+		}, this);
+	},
 	
 	render: function(){
 		var rows = [];
 
-		this.props.tracklists.forEach(function(tracklist) {
-			rows.push(<FrontTrackListRow name={tracklist.name} />);
+		this.props.tracklists.models.forEach(function(tracklist) {
+			rows.push(<FrontTrackListRow name={tracklist.get("title")} />);
 		});
 
 		return (

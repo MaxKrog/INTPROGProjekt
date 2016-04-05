@@ -6,7 +6,7 @@
   "author": "Max Krog",
   "license": "MIT",
   "scripts": {
-    "dev": "watchify client/app/main.js --outfile client/bundled.js  -v --poll -d -t reactify"
+    "dev": "watchify client/app/main.js --outfile client/bundled.js  --debug -v --poll -d -t reactify"
   },
   "dependencies": {
     "body-parser": "^1.10.2",
