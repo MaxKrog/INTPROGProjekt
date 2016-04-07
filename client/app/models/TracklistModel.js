@@ -22,12 +22,6 @@ module.exports = Backbone.Model.extend({
 
 	initialize: function(){
 
-		this.tracks = new TrackCollection();
-		this.on("sync", this.backup, this);
-	},
-
-	backup: function() {
-		this._backupAttributes = _.clone(this.attributes);
 	},
 
 	resetToBackup: function(){
@@ -36,6 +30,9 @@ module.exports = Backbone.Model.extend({
 	},
 
 	parse: function(data){
+		if(!this.tracks){
+			this.tracks = new TrackCollection();
+		}
 		console.log("TracklistModel parse!");
 		//Merges the objects in data.tracks.
 		var tracks = data.tracks.map(function(item){
@@ -45,10 +42,11 @@ module.exports = Backbone.Model.extend({
 		});
 		delete data.tracks;
 
+		//Backing up. If user cancels edit, this is the state it's retuned too.
+		this._backupAttributes = _.clone(data);
 		this._backupTracks = tracks;
-		this.tracks.reset(tracks);
-		
 
+		this.tracks.reset(tracks);
 		return data;
 	},
 	toJSON: function(options) {
