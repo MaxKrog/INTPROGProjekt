@@ -28,31 +28,24 @@ module.exports = React.createClass({
 			save: this.save,
 			cancel: this.cancel
 		};
-		var keys = ["title", "artist", "genre", "length", "spotify", "soundcloud", "youtube"];
 
-		var model = this.props.model;
+		var model = this.state.editing ? this.state.editModel : this.props.model;
 
 		return(		
 			<div>	
 	        	<div className="row">
 	        		<div className="col-md-3 col-md-offset-2">
-	        			<div className="row">
-							<div className="panel panel-default">
-							<div className="panel-body">
-								<h2><small>Title:</small> Kakvogel </h2>
-								<h2><small>Artist:</small> Solomun </h2>
-								<h2><small>Genre:</small> Tech House</h2>
-								<h2><small>Length:</small> 8:05</h2>
-							</div>
+	        				
+	        		</div>
+	        		<div className="col-md-5">
+	        		<div className="panel panel-default">
+							<InfoView model={model} editing={this.state.editing} />
 							<div className="panel-footer">
 								<ButtonGroupView methods={methods} editing={this.state.editing}  />
 							</div>
-							</div>
-	        				
-	        			</div>
-	        		</div>
-	        		<div className="col-md-5">
-	        			<ListView collection={model.get("tracks")} />
+							<ListView collection={model.get("tracks")} title={"hejsan"} editing={this.state.editing}/>
+						</div>
+	        			
 	        		</div>
 	        	</div>
 	        </div>
@@ -60,7 +53,9 @@ module.exports = React.createClass({
 	},
 
 	edit: function() {
+		console.log("Editing!");
 		this.setState({editing: true});
+
 	},
 
 	cancel: function () {
@@ -76,13 +71,12 @@ module.exports = React.createClass({
 	},
 
 	save: function() {
-
-		if(this.props.model.save(this.state.editModel.attributes)){
-			this.setState({
+		var _this = this;
+		this.props.model.save(this.state.editModel.attributes).done(function(){
+			console.log("Saved!");
+			_this.setState({
 				editing: false
-			})
-		} else {
-
-		}
+			});
+		})
 	}
 });

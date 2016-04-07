@@ -21,27 +21,31 @@ module.exports = Backbone.Model.extend({
 	urlRoot: "api/tracklist",
 
 	initialize: function(){
-		console.log("I am a tracklistmodel:");
+		console.log("Inited a tracklistmodel:");
+
 		console.log(this);
 	},
 
 	parse: function(data){
-
+		console.log("TracklistModel parse!");
 		//Merges the objects in data.tracks.
 		var tracks = data.tracks.map(function(item){
-
 			var track = _.extend(item, item.track);
 			delete track.track;
 			return track;
 		});
-
-		var trackCollection = new TrackCollection(tracks);
-		this.set("tracks", trackCollection);
 		delete data.tracks;
+
+		if(this.get("tracks")) {
+			this.get("tracks").reset(tracks);
+		} else {
+			var trackCollection = new TrackCollection(tracks);
+			this.set("tracks", trackCollection);
+		}
+		
 
 		return data;
 	},
-
 	toJSON: function(options) {
 
 		var tracksAttrs = this.get("tracks").toJSON().map(function(track){
@@ -52,7 +56,7 @@ module.exports = Backbone.Model.extend({
 			}
 		})
 
-		var attrs = this.attributes;
+		var attrs = JSON.parse(JSON.stringify(this.attributes)); //Make a deep-copy
 		attrs.tracks = tracksAttrs;
 
 		console.log(attrs);

@@ -20,5 +20,9 @@ module.exports = Backbone.Collection.extend({
 		console.log(data);
 
 		return data;
-	}
+	},
+
+	swapPlaces : function(index1, index2) {
+        this.models[index1] = this.models.splice(index2, 1, this.models[index1])[0];
+    }
 });

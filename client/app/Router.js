@@ -19,7 +19,6 @@ module.exports = BackboneRouteControl.extend({
 	},
 	initialize: function(){
         console.log("Router initialized!");
-        console.log(this.controllers);  
     },
 
     dev: function(){

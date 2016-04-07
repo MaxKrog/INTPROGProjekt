@@ -85,9 +85,12 @@ router.get("/tracklist/:id", function(req, res, next){
 router.put("/tracklist/:id", function(req, res, next){
     TracklistModel.findByIdAndUpdate(req.params.id, req.body).exec(function(err, data){
         if(err) next(err);
-        res.send(data);
-    })
-})
+        TracklistModel.findById(req.params.id).populate("tracks.track").exec( function(err, data){
+            if(err) next(err);
+            res.send(data);
+        });
+    });
+});
 
 //POST A NEW TRACKLIST
 router.post("/tracklist", function(req, res, next){

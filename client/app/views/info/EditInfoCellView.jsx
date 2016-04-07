@@ -18,8 +18,15 @@ module.exports = React.createClass({
 		var value = this.props.model.get(this.props.keyName);
 
 		return (
-			<h2><small>{capitalize(keyName)}: </small>{value}</h2>
+			<div className="form-group">
+				<label>{capitalize(this.props.keyName)}</label>
+				<input className="form-control" onChange={this.onChange} defaultValue={value} placeholder={capitalize(this.props.keyName)} />
+			</div>
 		)
+	},
+
+	onChange: function(e) {
+		this.props.model.set(this.props.keyName, e.target.value);
 	}
 
 });

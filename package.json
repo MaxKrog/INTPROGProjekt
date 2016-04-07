@@ -17,7 +17,8 @@
     "mongodb": "^2.0.33",
     "mongoose": "3.8.21",
     "morgan": "^1.5.1",
-    "react-backbone": "^1.0.5"
+    "react-backbone": "^1.0.5",
+    "react.backbone": "^0.8.0"
   },
   "devDependencies": {
     "babel": "^6.5.2",

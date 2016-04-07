@@ -4,6 +4,8 @@ var TracklistSchema = new Schema({
     title: {type: String},
     artist: {type: String},
     createdBy: {type: String},
+    genre: String,
+    length: String,
 	spotify: String,
 	soundcloud: String,
 	youtube: String,

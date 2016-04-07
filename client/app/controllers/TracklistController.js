@@ -33,6 +33,14 @@ module.exports = function(options) {
         one: function(id) {
 
             var tracklistModel = new TracklistModel({_id: id});
+           /* var tracklistModel = new TracklistModel({"title":"solomun BR"});
+            var TrackCollection = require("../collections/TrackCollection.js");
+            var trackCollection = new TrackCollection();
+            trackCollection.fetch().done(function(){
+                tracklistModel.set("tracks", trackCollection);
+                tracklistModel.save();
+            })
+            */
 
 
             tracklistModel.fetch().done(function() {
