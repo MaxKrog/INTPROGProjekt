@@ -5,9 +5,13 @@ var ReactDOM = require("react-dom");
 var TracklistModel = require("../models/TracklistModel.js");
 //COLLECTION
 var TracklistCollection = require("../collections/TracklistCollection.js");
+
 //VIEW
 var ListView = require("../views/list/ListView.jsx");
 var InfoView = require("../views/info/InfoView.jsx");
+
+var TracklistView = require("../views/pages/TracklistView.jsx");
+
 module.exports = function(options) {
 
     var app = options.app;
@@ -30,14 +34,11 @@ module.exports = function(options) {
 
             var tracklistModel = new TracklistModel({_id: id});
 
+
             tracklistModel.fetch().done(function() {
 
-                var keys = ["title", "artist", "genre", "length", "spotify", "soundcloud", "youtube"];
                 ReactDOM.render(
-                	<div>
-                   		<InfoView model={tracklistModel} keys={keys} title="Tracklist info" />
-                   		<ListView collection={tracklistModel.get("tracks")} title="Tracks.."/>
-                   	</div>
+                    <TracklistView model={tracklistModel} editing={false} isNew={false} />
                     , element);
             });
         },

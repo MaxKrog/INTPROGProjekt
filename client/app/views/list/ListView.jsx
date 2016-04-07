@@ -17,13 +17,8 @@ module.exports = React.createClass({
 		})
 
 		return(
-			<div className="panel panel-default">
-				<div className="panel-heading">
-					<h3 style={{margin: "10px"}}> {this.props.title} </h3>
-				</div>
-				<div className="list-group">
-					{rows}
-				</div>
+			<div className="list-group">
+				{rows}
 			</div>
 		)
 	}

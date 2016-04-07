@@ -8,6 +8,7 @@ var ReactDOM = require("react-dom");
 module.exports = BackboneRouteControl.extend({
 
 	routes: {
+        "a": "dev",
         "tracks": "track#all",
         "track/:id" : "track#one",
         "add/track" : "track#add",
@@ -20,4 +21,8 @@ module.exports = BackboneRouteControl.extend({
         console.log("Router initialized!");
         console.log(this.controllers);  
     },
+
+    dev: function(){
+
+    }
 });
