@@ -9,9 +9,11 @@ module.exports = BackboneRouteControl.extend({
 
 	routes: {
         "tracks": "track#all",
-        "track/:id": "track#one",
+        "track/:id" : "track#one",
+        "add/track" : "track#add",
         "tracklists": "tracklist#all",
-        "tracklist/:id": "tracklist#one"
+        "tracklist/:id": "tracklist#one",
+        "add/tracklist": "tracklist#add"
 
 	},
 	initialize: function(){

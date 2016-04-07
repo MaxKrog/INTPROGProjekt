@@ -40,6 +40,10 @@ module.exports = function(options) {
                    	</div>
                     , element);
             });
+        },
+
+        add: function() {
+        	
         }
     };
 };

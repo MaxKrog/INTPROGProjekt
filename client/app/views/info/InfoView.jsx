@@ -12,8 +12,9 @@ module.exports = React.createClass({
 	},
 
 	getInitialState: function() {
+		var editing = this.props.model.isNew() ? true : false;
 		return {
-			editing: false,
+			editing: editing,
 			editModel: this.props.model.clone()
 		}
 	},
@@ -31,7 +32,7 @@ module.exports = React.createClass({
 			<div className="panel panel-default">
 				<div className="panel-heading clearfix">
 					<h3 className="panel-title pull-left" style={{fontSize: "28px"}}> {this.props.title} </h3>
-					<ButtonGroupView methods={methods} editing={this.state.editing} />
+					<ButtonGroupView methods={methods} editing={this.state.editing}  />
 				</div>
 
 				<div className="panel-body">
@@ -48,12 +49,19 @@ module.exports = React.createClass({
 	edit: function() {
 		this.setState({editing: true});
 	},
+
 	cancel: function () {
-		this.state.editModel.set(this.props.model.toJSON());
-		this.setState({
-			editing: false
-		});
+		if( this.props.model.isNew()){
+			console.log("SHOULD BACK TO LATEST URL");
+		} else {
+			this.state.editModel.set(this.props.model.attributes);
+			this.setState({
+				editing: false
+			});
+		}
+		
 	},
+
 	save: function() {
 
 		if(this.props.model.save(this.state.editModel.attributes)){
@@ -65,12 +73,5 @@ module.exports = React.createClass({
 		}
 
 
-	},
-
-
-	submit: function(e){
-		e.preventDefault();
-		console.log(this.props.model.toJSON());
-		this.props.model.save();
-	},
+	}
 });

@@ -10,7 +10,6 @@ var ListView = require("../views/list/ListView.jsx");
 var InfoView = require("../views/info/InfoView.jsx");
 module.exports = function(options) {
 
-    var app = options.app;
     var element = options.element;
 
     return {
@@ -37,6 +36,16 @@ module.exports = function(options) {
                     <InfoView model={trackModel} keys={keys} title="Track info" />
                     , element);
             });
+        },
+
+        add: function(){
+            var trackModel = new TrackModel();
+
+            var keys = ["title", "artist", "genre", "length", "spotify", "soundcloud", "youtube"];
+            ReactDOM.render(
+                <InfoView model={trackModel} keys={keys} title="Add Track" />
+                , element);
+
         }
     };
 };

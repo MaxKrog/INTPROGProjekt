@@ -20,6 +20,7 @@ module.exports = Backbone.Model.extend({
 	urlRoot: "api/track",
 
 	initialize: function(){
+		console.log("Inited a TrackModel!");
 
 	},
 
