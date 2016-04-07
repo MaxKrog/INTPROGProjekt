@@ -83,17 +83,10 @@ router.get("/tracklist/:id", function(req, res, next){
 
 //UPDATE / EDIT ONE TRACKLIST
 router.put("/tracklist/:id", function(req, res, next){
-    console.log(req.body);
-
-    req.body.tracks = req.body.tracks.map(function(track){
-        return {
-            track: track.track._id,
-            startTime: track.startTime,
-            _id: track._id
-        }
+    TracklistModel.findByIdAndUpdate(req.params.id, req.body).exec(function(err, data){
+        if(err) next(err);
+        res.send(data);
     })
-
-    console.log(req.body);
 })
 
 //POST A NEW TRACKLIST

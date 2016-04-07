@@ -21,9 +21,7 @@ module.exports = React.createClass({
 			<li className="list-group-item" onClick={this.click}>
 				<div className="media">
 					<div className="media-left">
-						<a href="#">
-							<img className="media-object" src={this.state.imgUrl} style={{maxWidth:"30px"}}/>
-						</a>
+						<img className="media-object" src={this.state.imgUrl} style={{maxWidth:"30px"}}/>
 					</div>
 					<div className="media-body">
 						<h4 className="media-heading">{this.props.model.get("title")}</h4>

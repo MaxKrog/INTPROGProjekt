@@ -21,5 +21,11 @@ module.exports = Backbone.Model.extend({
 
 	initialize: function(){
 
+	},
+
+	validate: function(attrs) {
+		console.log("Validating");
+		console.log(attrs);
+
 	}
 })

@@ -8,18 +8,18 @@ var TracklistSchema = new Schema({
 	soundcloud: String,
 	youtube: String,
     tracks: [{
-    	track: {type: ObjectId, ref: "Track"},
-    	startTime: {type: String},
-    	_id: false
+        track: {type: ObjectId, ref: "Track"},
+       startTime: {type: String},
+       _id: false
     }]
 }, {
     toObject: {
         virtuals: true
-    }, 
+    },
     toJSON: {
         virtuals: true
     }
 });
+TracklistSchema.virtual("type").get(function(){ return "tracklist";});
 
-TracklistSchema.virtual("type").get(function(){ return "tracklist" });
 module.exports = mongoose.model('Tracklist', TracklistSchema);

@@ -8,7 +8,6 @@ module.exports = React.createClass({
 
 	propTypes: {
 		model: React.PropTypes.object.isRequired, //A Backbone-Model
-		collection: React.PropTypes.object.isRequired, //A Backbone-Collection
 		keys: React.PropTypes.array.isRequired
 	},
 	submit: function(e){

@@ -3,7 +3,14 @@ var Backbone = require("backbone");
 var Router = require("./Router.js");
 
 $(document).ready(function(){
-    var router = new Router();
+
+	var element = document.getElementById("app");
+	var controllers = {
+		track: require("./controllers/TrackController.js")({element: element}),
+		tracklist: require("./controllers/TracklistController.js")({element: element})
+	}
+    var router = new Router({controllers: controllers});
+
     Backbone.history.start();
     
 })
