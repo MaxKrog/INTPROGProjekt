@@ -21,9 +21,18 @@ module.exports = Backbone.Model.extend({
 	urlRoot: "api/tracklist",
 
 	initialize: function(){
-		console.log("Inited a tracklistmodel:");
 
-		console.log(this);
+		this.tracks = new TrackCollection();
+		this.on("sync", this.backup, this);
+	},
+
+	backup: function() {
+		this._backupAttributes = _.clone(this.attributes);
+	},
+
+	resetToBackup: function(){
+		this.set(this._backupAttributes);
+		this.tracks.reset(this._backupTracks);
 	},
 
 	parse: function(data){
@@ -36,19 +45,15 @@ module.exports = Backbone.Model.extend({
 		});
 		delete data.tracks;
 
-		if(this.get("tracks")) {
-			this.get("tracks").reset(tracks);
-		} else {
-			var trackCollection = new TrackCollection(tracks);
-			this.set("tracks", trackCollection);
-		}
+		this._backupTracks = tracks;
+		this.tracks.reset(tracks);
 		
 
 		return data;
 	},
 	toJSON: function(options) {
 
-		var tracksAttrs = this.get("tracks").toJSON().map(function(track){
+		var tracksAttrs = this.tracks.toJSON().map(function(track){
 			return {
 				startTime: track.startTime,
 				track: track._id,

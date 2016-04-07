@@ -16,8 +16,7 @@ module.exports = React.createClass({
 
 	getInitialState: function() {
 		return {
-			editing: this.props.editing || false,
-			editModel: this.props.model.clone()
+			editing: this.props.editing || false
 		}
 	},
 
@@ -29,7 +28,7 @@ module.exports = React.createClass({
 			cancel: this.cancel
 		};
 
-		var model = this.state.editing ? this.state.editModel : this.props.model;
+		var model = this.props.model;
 
 		return(		
 			<div>	
@@ -43,7 +42,7 @@ module.exports = React.createClass({
 							<div className="panel-footer">
 								<ButtonGroupView methods={methods} editing={this.state.editing}  />
 							</div>
-							<ListView collection={model.get("tracks")} title={"hejsan"} editing={this.state.editing}/>
+							<ListView collection={model.tracks} title={"hejsan"} editing={this.state.editing}/>
 						</div>
 	        			
 	        		</div>
@@ -62,17 +61,21 @@ module.exports = React.createClass({
 		if( this.props.model.isNew()){
 			console.log("SHOULD BACK TO LATEST URL");
 		} else {
-			this.state.editModel.set(this.props.model.attributes);
+			this.props.model.resetToBackup();
 			this.setState({
 				editing: false
 			});
 		}
+
+		console.log(this.props.model);
+		console.log(this.state.editModel);
 		
 	},
 
 	save: function() {
 		var _this = this;
-		this.props.model.save(this.state.editModel.attributes).done(function(){
+
+		this.props.model.save().done(function(){
 			console.log("Saved!");
 			_this.setState({
 				editing: false

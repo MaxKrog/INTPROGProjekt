@@ -22,9 +22,16 @@ module.exports = ReactBackbone.createClass({
 			dragOver: this.dragOver
 		}
 
-		var rows = this.props.collection.models.map(function(model){
-			return <TracklistListCellView model={model} key={model.get("id")} dragMethods={dragMethods}/>
-		})
+		if(this.props.editing){
+			var rows = this.props.collection.models.map(function(model){
+				return <TracklistListCellView model={model} key={model.get("id")} dragMethods={dragMethods}/>
+			})
+		} else {
+			var rows = this.props.collection.models.map(function(model){
+				return <ListCellView model={model} key={model.get("id")} />
+			})
+		}
+
 
 		return(
 			<div className="list-group" onDragOver={this.dragOver}>
