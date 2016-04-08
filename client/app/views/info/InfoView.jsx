@@ -13,7 +13,6 @@ var InfoView = React.createClass({
 	},
 
 	getInitialState: function() {
-		console.log("INIT STATE");
 		return {};
 	},
 
@@ -23,13 +22,17 @@ var InfoView = React.createClass({
 		if(this.props.editing){
 			return(
 				<div className="panel-body">
-					<EditInfoCellView model={_this.props.model} key={"title"} keyName={"title"} />
-					<EditInfoCellView model={_this.props.model} key={"artist"} keyName={"artist"} />
-					<EditInfoCellView model={_this.props.model} key={"genre"} keyName={"genre"} />
-					<EditInfoCellView model={_this.props.model} key={"length"} keyName={"length"} />
-					<EditInfoCellView model={_this.props.model} key={"youtube"} keyName={"youtube"} />
-					<EditInfoCellView model={_this.props.model} key={"soundcloud"} keyName={"soundcloud"} />
-					<EditInfoCellView model={_this.props.model} key={"spotify"} keyName={"spotify"} />
+					<div className="col-md-6">
+						<EditInfoCellView model={_this.props.model} key={"title"} keyName={"title"} />
+						<EditInfoCellView model={_this.props.model} key={"artist"} keyName={"artist"} />
+						<EditInfoCellView model={_this.props.model} key={"genre"} keyName={"genre"} />
+						<EditInfoCellView model={_this.props.model} key={"length"} keyName={"length"} />
+					</div>
+					<div className="col-md-6">
+						<EditInfoCellView model={_this.props.model} key={"youtube"} keyName={"youtube"} />
+						<EditInfoCellView model={_this.props.model} key={"soundcloud"} keyName={"soundcloud"} />
+						<EditInfoCellView model={_this.props.model} key={"spotify"} keyName={"spotify"} />
+					</div>
 				</div>
 				)
 		} else {

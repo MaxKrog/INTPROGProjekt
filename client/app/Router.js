@@ -8,7 +8,7 @@ var ReactDOM = require("react-dom");
 module.exports = BackboneRouteControl.extend({
 
 	routes: {
-        "a": "dev",
+        "add": "add#all",
         "tracks": "track#all",
         "track/:id" : "track#one",
         "add/track" : "track#add",
