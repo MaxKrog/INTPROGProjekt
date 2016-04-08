@@ -4,6 +4,7 @@ var React = require("react");
 var InfoCellView = require("./InfoCellView.jsx");
 var EditInfoCellView = require("./EditInfoCellView.jsx");
 var ButtonGroupView = require("../components/ButtonGroupView.jsx");
+var InfoSocialView = require("./InfoSocialView.jsx");
 
 var InfoView = React.createClass({
 
@@ -42,6 +43,7 @@ var InfoView = React.createClass({
 					<InfoCellView model={_this.props.model} key={"artist"} keyName={"artist"} />
 					<InfoCellView model={_this.props.model} key={"genre"} keyName={"genre"} />
 					<InfoCellView model={_this.props.model} key={"length"} keyName={"length"} />
+					<InfoSocialView model={_this.props.model} />
 				</div>
 				);
 		}

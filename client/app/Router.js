@@ -14,7 +14,8 @@ module.exports = BackboneRouteControl.extend({
         "add/track" : "track#add",
         "tracklists": "tracklist#all",
         "tracklist/:id": "tracklist#one",
-        "add/tracklist": "tracklist#add"
+        "add/tracklist": "tracklist#add",
+        "search/:filter": "search#all"
 
 	},
 	initialize: function(){
