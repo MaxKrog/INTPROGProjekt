@@ -35,20 +35,18 @@ module.exports = React.createClass({
 			<div>	
 	        	<div className="row">
 	        		<div className="col-md-3 col-md-offset-2">
-	        				
+						<div className="panel panel-default">
+
+							<InfoView model={model} editing={this.state.editing} />
+							<div className="panel-footer">
+								<button type="button" className="btn btn-primary btn-block">Add Tracks</button>
+								<ButtonGroupView methods={methods} editing={this.state.editing}  />
+							</div>
+							
+						</div>
 	        		</div>
 	        		<div className="col-md-5">
-	        		<div className="panel panel-default">
-	        			<div className="panel-footer">
-							<ButtonGroupView methods={methods} editing={this.state.editing}  />
-						</div>
-							<InfoView model={model} editing={this.state.editing} />
-								<div className="panel-footer">
-									<button type="button" className="btn btn-primary btn-block">Add Tracks</button>
-								</div>
-							<ListView collection={model.tracks} editing={this.state.editing}/>
-						</div>
-	        			
+						<ListView collection={model.tracks} editing={this.state.editing}/>
 	        		</div>
 	        	</div>
 	        </div>
