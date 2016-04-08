@@ -4,7 +4,8 @@ Backbone.$ = $;
 var _ = require("underscore");
 
 var TrackCollection = require("../collections/TrackCollection.js");
-module.exports = Backbone.Model.extend({
+
+var TracklistModel = Backbone.Model.extend({
 
 	idAttribute: "_id",
 
@@ -21,6 +22,9 @@ module.exports = Backbone.Model.extend({
 	urlRoot: "api/tracklist",
 
 	initialize: function(){
+		if(!this.tracks){
+			this.tracks = new TrackCollection();
+		}
 
 	},
 
@@ -30,30 +34,32 @@ module.exports = Backbone.Model.extend({
 	},
 
 	parse: function(data){
+		console.log(data);
 		if(!this.tracks){
 			this.tracks = new TrackCollection();
 		}
-		console.log("TracklistModel parse!");
-		//Merges the objects in data.tracks.
-		var tracks = data.tracks.map(function(item){
-			var track = _.extend(item, item.track);
-			delete track.track;
-			return track;
-		});
-		delete data.tracks;
 
-		//Backing up. If user cancels edit, this is the state it's retuned too.
+		if(data.tracks){
+			var tracks = data.tracks.map(function(item){
+				delete item.id;
+				var track = _.extend(item, item.track);
+				delete track.track;
+				return track;
+			});
+			delete data.tracks;
+			this._backupTracks = tracks;
+			this.tracks.reset(tracks);
+		}
+
 		this._backupAttributes = _.clone(data);
-		this._backupTracks = tracks;
 
-		this.tracks.reset(tracks);
 		return data;
 	},
 	toJSON: function(options) {
 
 		var tracksAttrs = this.tracks.toJSON().map(function(track){
 			return {
-				startTime: track.startTime,
+				startTime: track.startTime || "00:00",
 				track: track._id,
 
 			}
@@ -67,3 +73,5 @@ module.exports = Backbone.Model.extend({
 
 	}
 });
+
+module.exports = TracklistModel;

@@ -4,7 +4,7 @@ Backbone.$ = $;
 
 var TracklistModel = require("../models/TracklistModel.js");
 
-module.exports = Backbone.Collection.extend({
+var TracklistCollection = Backbone.Collection.extend({
 
 	model: TracklistModel,
 
@@ -23,3 +23,5 @@ module.exports = Backbone.Collection.extend({
 		return data;
 	}
 });
+
+module.exports = TracklistCollection;

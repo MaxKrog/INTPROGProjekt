@@ -1,5 +1,4 @@
 var React = require("react");
-var ReactBackbone = require("react.backbone");
 //VIEWS:
 module.exports = React.createClass({
 

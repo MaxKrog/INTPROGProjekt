@@ -11,15 +11,15 @@ var TracklistSchema = new Schema({
 	youtube: String,
     tracks: [{
         track: {type: ObjectId, ref: "Track"},
-       startTime: {type: String},
-       _id: false
+        startTime: {type: String},
+        _id: false
     }]
 }, {
     toObject: {
-        virtuals: true
+        virtuals: false
     },
     toJSON: {
-        virtuals: true
+        virtuals: false
     }
 });
 TracklistSchema.virtual("type").get(function(){ return "tracklist";});

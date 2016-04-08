@@ -8,6 +8,8 @@ var TrackCollection = require("../collections/TrackCollection.js");
 //VIEW
 var ListView = require("../views/list/ListView.jsx");
 var InfoView = require("../views/info/InfoView.jsx");
+
+var TrackView = require("../views/pages/TrackView.jsx");
 module.exports = function(options) {
 
     var element = options.element;
@@ -16,13 +18,13 @@ module.exports = function(options) {
         all: function() {
 
             var trackCollection = new TrackCollection();
+            trackCollection.fetch();
 
             trackCollection.fetch().done(function(){
 
                 ReactDOM.render(
-                    <ListView collection={trackCollection} title="Latest Tracks" />, element);
+                    <ListView collection={trackCollection} title="Latest Tracks" editing={false}/>, element);
             });
-
         },
 
         one: function(id) {
@@ -31,9 +33,8 @@ module.exports = function(options) {
 
             trackModel.fetch().done(function() {
 
-                var keys = ["title", "artist", "genre", "length", "spotify", "soundcloud", "youtube"];
                 ReactDOM.render(
-                    <InfoView model={trackModel} keys={keys} title="Track info" />
+                    <TrackView model={trackModel} editing={false} isNew={false} />
                     , element);
             });
         },
@@ -41,9 +42,8 @@ module.exports = function(options) {
         add: function(){
             var trackModel = new TrackModel();
 
-            var keys = ["title", "artist", "genre", "length", "spotify", "soundcloud", "youtube"];
             ReactDOM.render(
-                <InfoView model={trackModel} keys={keys} title="Add Track" />
+                <TrackView model={trackModel} editing={true} isNew={true} />
                 , element);
 
         }

@@ -25,7 +25,7 @@ module.exports = function(options) {
             tracklistCollection.fetch().done(function(){
 
                 ReactDOM.render(
-                    <ListView collection={tracklistCollection} title="Latest Tracklists" />, element);
+                    <ListView collection={tracklistCollection} title="Latest Tracklists" editing={false}/>, element);
             });
 
         },
@@ -52,7 +52,10 @@ module.exports = function(options) {
         },
 
         add: function() {
-        	
+            var tracklistModel = new TracklistModel();
+            ReactDOM.render(
+                <TracklistView model={tracklistModel} editing={true} isNew={true} />
+                , element);
         }
     };
 };

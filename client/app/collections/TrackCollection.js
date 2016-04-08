@@ -3,15 +3,19 @@ var Backbone = require("backbone");
 Backbone.$ = $;
 
 var TrackModel = require("../models/TrackModel.js");
-module.exports = Backbone.Collection.extend({
+
+var TrackCollection = Backbone.Collection.extend({
 
 	model: TrackModel,
+
+	idAttribute: "_id",
 
 	url: "api/track",
 
 	initialize: function(){
 
 		console.log("Created a TrackCollection!");
+		console.log(TrackModel);
 
 	},
 
@@ -26,3 +30,5 @@ module.exports = Backbone.Collection.extend({
         this.models[index1] = this.models.splice(index2, 1, this.models[index1])[0];
     }
 });
+
+module.exports = TrackCollection;

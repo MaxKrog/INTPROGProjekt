@@ -29,6 +29,7 @@ module.exports = React.createClass({
 		};
 
 		var model = this.props.model;
+		console.log(model);
 
 
 		return(		
@@ -38,15 +39,12 @@ module.exports = React.createClass({
 	        				
 	        		</div>
 	        		<div className="col-md-5">
-	        		<div className="panel panel-default">
-	        			<div className="panel-footer">
-							<ButtonGroupView methods={methods} editing={this.state.editing}  />
-						</div>
+		        		<div className="panel panel-default">
+		        			<div className="panel-footer">
+								<ButtonGroupView methods={methods} editing={this.state.editing}  />
+							</div>
 							<InfoView model={model} editing={this.state.editing} />
-								<div className="panel-footer">
-									<button type="button" className="btn btn-primary btn-block">Add Tracks</button>
-								</div>
-							<ListView collection={model.tracks} editing={this.state.editing}/>
+							<ListView collection={model.tracklists} editing={false}/>
 						</div>
 	        			
 	        		</div>

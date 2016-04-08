@@ -1,5 +1,4 @@
 var React = require("react");
-var ReactBackbone = require("react.backbone");
 
 var $ = require("jquery");
 //VIEWS:
@@ -7,7 +6,7 @@ var ListCellView = require("./ListCellView.jsx");
 var TracklistListCellView = require("./TracklistListCellView.jsx");
 
 
-module.exports = ReactBackbone.createClass({
+module.exports = React.createClass({
 
 	propTypes: {
 		collection: React.PropTypes.object.isRequired, //A Backbone-Collection of tracks
@@ -24,11 +23,11 @@ module.exports = ReactBackbone.createClass({
 
 		if(this.props.editing){
 			var rows = this.props.collection.models.map(function(model){
-				return <TracklistListCellView model={model} key={model.get("id")} dragMethods={dragMethods}/>
+				return <TracklistListCellView model={model} key={model.id} dragMethods={dragMethods}/>
 			})
 		} else {
 			var rows = this.props.collection.models.map(function(model){
-				return <ListCellView model={model} key={model.get("id")} />
+				return <ListCellView model={model} key={model.id} />
 			})
 		}
 

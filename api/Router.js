@@ -20,12 +20,23 @@ router.get("/track", function(req, res, next){
     })
 })
 
+//GET ONE TRACK AND FEATURED IN.
 router.get("/track/:id", function(req, res, next){
     TrackModel.findById(req.params.id).exec( function(err, data){
         if(err) next(err);
-        res.send(data);
-    })
-})
+
+        TracklistModel.find({"tracks.track": req.params.id}).select("-tracks").exec(function(err, data2){
+            if(err) next(err);
+            data = data.toJSON();
+            //data2 = data2.toJSON();
+            data["featuredIn"] = data2.map(function(item){
+                return item.toJSON();
+            });
+            console.log(data);
+            res.send(data);
+        });
+    });
+});
 
 router.put("/track/:id", function(req, res, next){
     console.log(req.body);
@@ -67,7 +78,7 @@ router.delete("/track/:id", function(req, res, next){
 
 //GET ALL TRACKLISTS WITHOUT TRACKS
 router.get("/tracklist", function(req, res, next){ 
-    TracklistModel.find().exec( function(err, data){
+    TracklistModel.find().select("-tracks").exec( function(err, data){
         if(err) next(err);
         res.send(data);
     })
@@ -83,8 +94,7 @@ router.get("/tracklist/:id", function(req, res, next){
 
 //UPDATE / EDIT ONE TRACKLIST
 router.put("/tracklist/:id", function(req, res, next){
-    TracklistModel.findByIdAndUpdate(req.params.id, req.body).exec(function(err, data){
-        if(err) next(err);
+    TracklistModel.findByIdAndUpdate(req.params.id, req.body).exec( function(err, data){
         TracklistModel.findById(req.params.id).populate("tracks.track").exec( function(err, data){
             if(err) next(err);
             res.send(data);
@@ -96,13 +106,9 @@ router.put("/tracklist/:id", function(req, res, next){
 router.post("/tracklist", function(req, res, next){
     
     console.log(req.body);
+    req.body.createdBy = "mkrog";
     
-    var tracklist = new TracklistModel({
-        title: req.body.title || null,
-        artist: req.body.artist || null,
-        createdBy: req.body.createdBy || "mkrog hardcoded",
-        tracks: req.body.tracks || []
-    });
+    var tracklist = new TracklistModel(req.body);
     
     tracklist.save(function(err, data){
         if(err) next(err);

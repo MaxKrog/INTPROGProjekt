@@ -34,6 +34,6 @@ module.exports = React.createClass({
 
 	click: function() {
 		var model = this.props.model;
-		window.location.hash = "#/" + model.get("type") + "/" + model.get("id");
+		window.location.hash = "#/" + model.get("type") + "/" + model.id;
 	}
 });
