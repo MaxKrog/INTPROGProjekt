@@ -4,11 +4,9 @@ var $ = require("jquery");
 
 
 
-module.exports = function(options, collection) {
+module.exports = function(view, collection) {
 
-    var element = options.element;
-
-
+    console.log(collection);
     return {
 
         dragStart: function(e) {
@@ -30,12 +28,12 @@ module.exports = function(options, collection) {
             this.overIndex = $(e.target).index();
             if(this.fromIndex !== this.overIndex){
                 console.log("SWAPPING");
-                console.log(this);
+                
                 
                 collection.swapPlaces(this.fromIndex, this.overIndex);
                 this.fromIndex = this.overIndex;
             } 
-            this.forceUpdate();
+            view.forceUpdate();
 
 
             //console.log(e);
