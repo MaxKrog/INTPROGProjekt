@@ -48,7 +48,7 @@ module.exports = React.createClass({
 
 							
 						</div>
-						<AddTracksToTracklistView collection={model.tracks}/>
+						{this.state.editing? <AddTracksToTracklistView collection={model.tracks}/> : ""}
 	        		</div>	
 	        	</div>
 	        </div>

@@ -14,6 +14,12 @@ module.exports = React.createClass({
 		collection: React.PropTypes.object.isRequired, //A Backbone-Collection of tracks
 	},
 
+	getInitialState: function(){
+		return {
+			model: this.props.collection.create()
+		}
+	},
+
 	render: function(){
 
 		var dragMethods = {
@@ -32,7 +38,7 @@ module.exports = React.createClass({
 						</span>
 					</div>
 				</div>
-				<InfoView model={this.props.collection.at(0)} editing={true} />
+				<InfoView model={this.state.model} editing={true} />
 			</div>
 		)
 	}
