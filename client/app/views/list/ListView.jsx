@@ -4,7 +4,7 @@ var $ = require("jquery");
 //VIEWS:
 var ListCellView = require("./ListCellView.jsx");
 var TracklistListCellView = require("./TracklistListCellView.jsx");
-
+var DragController = require("../../controllers/DragController.js")
 
 module.exports = React.createClass({
 
@@ -14,12 +14,9 @@ module.exports = React.createClass({
 	},
 
 	render: function(){
+		var _this = this;
 
-		var dragMethods = {
-			dragStart: this.dragStart,
-			dragEnd: this.dragEnd,
-			dragOver: this.dragOver
-		}
+		var dragMethods = new DragController(this, this.props.collection);
 
 		if(this.props.editing){
 			var rows = this.props.collection.models.map(function(model){
@@ -33,38 +30,11 @@ module.exports = React.createClass({
 
 
 		return(
-			<div className="list-group" onDragOver={this.dragOver}>
+			<div className="list-group" onDragOver={dragMethods.dragOver}>
 				{rows}
 			</div>
 		)
 	},
 
-	dragStart: function(e) {
-		this.dragged = $(e.currentTarget);
-		//this.dragged.children().hide();
-		this.fromIndex = this.dragged.index();
-		console.log(this.fromIndex);
-    	e.dataTransfer.effectAllowed = 'move';
-	},
 
-	dragEnd: function(e){
-
-		console.log(e);
-	},
-
-	dragOver: function(e){
-		e.preventDefault();
-		//this.dragged.style.display = "none";
-		this.overIndex = $(e.target).index();
-		if(this.fromIndex !== this.overIndex){
-			console.log("SWAPPING");
-			
-			this.props.collection.swapPlaces(this.fromIndex, this.overIndex);
-			this.fromIndex = this.overIndex;
-		} 
-		this.forceUpdate();
-
-
-		//console.log(e);
-	}
 });

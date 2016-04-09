@@ -17,6 +17,12 @@ module.exports = function(options) {
     var app = options.app;
     var element = options.element;
 
+    var dragMethods = {
+        dragStart: this.dragStart,
+        dragEnd: this.dragEnd,
+        dragOver: this.dragOver
+    }
+
     return {
         all: function() {
 
@@ -46,7 +52,7 @@ module.exports = function(options) {
             tracklistModel.fetch().done(function() {
 
                 ReactDOM.render(
-                    <TracklistView model={tracklistModel} editing={false} isNew={false} />
+                    <TracklistView model={tracklistModel} editing={false} isNew={false} dragMethods={dragMethods}/>
                     , element);
             });
         },
@@ -54,8 +60,9 @@ module.exports = function(options) {
         add: function() {
             var tracklistModel = new TracklistModel();
             ReactDOM.render(
-                <TracklistView model={tracklistModel} editing={true} isNew={true} />
+                <TracklistView model={tracklistModel} editing={true} isNew={true} dragMethods={dragMethods} />
                 , element);
-        }
+        },
+
     };
 };

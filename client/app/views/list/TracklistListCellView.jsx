@@ -1,4 +1,5 @@
 var React = require("react");
+var DragController = require("../../controllers/DragController.js");
 //VIEWS:
 module.exports = React.createClass({
 
@@ -16,6 +17,7 @@ module.exports = React.createClass({
 	},
 
 	render: function(){
+
 
 		var dragMethods = this.props.dragMethods;
 		return(
