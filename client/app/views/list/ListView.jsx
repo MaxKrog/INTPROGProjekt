@@ -13,6 +13,7 @@ module.exports = React.createClass({
 		editing: React.PropTypes.bool.isRequired
 	},
 
+
 	render: function(){
 		var _this = this;
 

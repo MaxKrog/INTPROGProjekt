@@ -44,7 +44,7 @@ module.exports = React.createClass({
 								<ButtonGroupView methods={methods} editing={this.state.editing}  />
 							</div>
 
-							<ListView collection={model.tracks} editing={this.state.editing} dragMethods={this.props.dragMethods} />
+							<ListView collection={model.tracks} editing={this.state.editing}/>
 
 							
 						</div>
