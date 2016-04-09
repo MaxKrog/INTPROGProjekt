@@ -25,7 +25,13 @@ module.exports = React.createClass({
 							<span className="badge" style={{width:"50px"}}><h4> 10 </h4></span>
 						</div>
 						<div className="media-body">
-							<h4 className="media-heading">{this.props.model.get("title")}</h4>
+							<table width="100%">
+								<tr>
+									<td><h4 className="media-heading">{this.props.model.get("title")}</h4></td>
+									<td width="32"><a href="#"><img src="./img/icons/delete_x.png" width="32" height="32"/></a></td>
+								</tr>
+							</table>
+
 							{this.props.model.get("artist")}
 						</div>
 					</div>
