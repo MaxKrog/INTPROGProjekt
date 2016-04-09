@@ -1,14 +1,14 @@
 var mongoose = require("mongoose"), Schema = mongoose.Schema, ObjectId = Schema.ObjectId;
 
 var TracklistSchema = new Schema({
-    title: {type: String},
-    artist: {type: String},
-    createdBy: {type: String},
-    genre: String,
-    length: String,
-	spotify: String,
-	soundcloud: String,
-	youtube: String,
+    title: {type: String, default: ""},
+    artist: {type: String, default: ""},
+    createdBy: {type: String, default: "mkrog"},
+    genre: {type: String, default: ""},
+    length: {type: String, default: ""},
+	spotify: {type: String, default: ""},
+	soundcloud: {type: String, default: ""},
+	youtube: {type: String, default: ""},
     tracks: [{
         track: {type: ObjectId, ref: "Track"},
         startTime: {type: String},

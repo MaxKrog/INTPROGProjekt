@@ -3,7 +3,8 @@ var React = require("react");
 module.exports = React.createClass({
 
 	propTypes: {
-		model: React.PropTypes.object.isRequired //A Backbone-Model
+		model: React.PropTypes.object.isRequired, //A Backbone-Model
+		dragMethods: React.PropTypes.object.isRequired
 	},
 
 	getInitialState: function() {

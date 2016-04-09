@@ -51,14 +51,7 @@ router.post("/track", function(req, res, next){
     
     console.log(req.body);
     
-    var track = new TrackModel({
-        title: req.body.title || null,
-        artist: req.body.artist || null,
-        genre: req.body.genre || null,
-        links: {
-            spotify: req.body.links ? req.body.links.spotify || null : null
-        }
-    });
+    var track = new TrackModel(req.body);
     
     track.save(function(err, data){
         if(err) next(err);
@@ -94,6 +87,7 @@ router.get("/tracklist/:id", function(req, res, next){
 
 //UPDATE / EDIT ONE TRACKLIST
 router.put("/tracklist/:id", function(req, res, next){
+    console.log(req.body);
     TracklistModel.findByIdAndUpdate(req.params.id, req.body).exec( function(err, data){
         TracklistModel.findById(req.params.id).populate("tracks.track").exec( function(err, data){
             if(err) next(err);

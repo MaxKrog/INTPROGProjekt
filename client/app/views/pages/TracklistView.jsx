@@ -5,6 +5,7 @@ var ButtonGroupView = require("../components/ButtonGroupView.jsx");
 var InfoView = require("../info/InfoView.jsx");
 var ListView = require("../list/ListView.jsx");
 
+var AddTracksToTracklistView = require("../components/AddTracksToTracklistView.jsx");
 
 module.exports = React.createClass({
 
@@ -34,20 +35,21 @@ module.exports = React.createClass({
 		return(		
 			<div>	
 	        	<div className="row">
-	        		<div className="col-md-3 col-md-offset-2">
+	        		<div className="col-md-8 col-md-offset-2">
 						<div className="panel panel-default">
 
 							<InfoView model={model} editing={this.state.editing} />
+
 							<div className="panel-footer">
-								<button type="button" className="btn btn-primary btn-block">Add Tracks</button>
 								<ButtonGroupView methods={methods} editing={this.state.editing}  />
 							</div>
+
+							<ListView collection={model.tracks} editing={this.state.editing}/>
+
 							
 						</div>
-	        		</div>
-	        		<div className="col-md-5">
-						<ListView collection={model.tracks} editing={this.state.editing}/>
-	        		</div>
+						<AddTracksToTracklistView collection={model.tracks}/>
+	        		</div>	
 	        	</div>
 	        </div>
 		)
