@@ -1,5 +1,5 @@
 var React = require("react");
-
+var backboneMixin = require('backbone-react-component');
 var $ = require("jquery");
 //VIEWS:
 var ListCellView = require("./ListCellView.jsx");
@@ -7,6 +7,7 @@ var TracklistListCellView = require("./TracklistListCellView.jsx");
 var DragController = require("../../controllers/DragController.js")
 
 module.exports = React.createClass({
+	mixins: [backboneMixin],
 
 	propTypes: {
 		collection: React.PropTypes.object.isRequired, //A Backbone-Collection of tracks
@@ -21,7 +22,7 @@ module.exports = React.createClass({
 
 		if(this.props.editing){
 			var rows = this.props.collection.models.map(function(model){
-				return <TracklistListCellView model={model} key={model.id} dragMethods={dragMethods}/>
+				return <TracklistListCellView model={model} key={model.id} dragMethods={dragMethods} onDeleteClick={_this.delete}/>
 			})
 		} else {
 			var rows = this.props.collection.models.map(function(model){
@@ -29,13 +30,16 @@ module.exports = React.createClass({
 			})
 		}
 
-
 		return(
 			<div className="list-group" onDragOver={dragMethods.dragOver}>
 				{rows}
 			</div>
 		)
 	},
+
+	delete: function(track){
+		this.props.collection.remove(track);
+	}
 
 
 });

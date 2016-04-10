@@ -43,11 +43,12 @@ module.exports = React.createClass({
 							<div className="panel-footer">
 								<ButtonGroupView methods={methods} editing={this.state.editing}  />
 							</div>
-
-							<ListView collection={model.tracks} editing={this.state.editing}/>
-
-							
 						</div>
+						<div className="panel panel-default">
+							<div className="panel-heading"> Tracks in tracklist </div>
+							<ListView collection={model.tracks} editing={this.state.editing}/>
+						</div>
+
 						{this.state.editing? <AddTracksToTracklistView collection={model.tracks}/> : ""}
 	        		</div>	
 	        	</div>

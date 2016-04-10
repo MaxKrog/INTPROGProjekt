@@ -25,7 +25,8 @@ module.exports = React.createClass({
 		var methods = {
 			edit: this.edit,
 			save: this.save,
-			cancel: this.cancel
+			cancel: this.cancel,
+			delete: this.delete
 		};
 
 		var model = this.props.model;
@@ -82,6 +83,12 @@ module.exports = React.createClass({
 			_this.setState({
 				editing: false
 			});
+		})
+	},
+
+	delete: function() {
+		this.props.model.destroy().done(function(){
+			console.log("DESTROYED, REDIRECT!");
 		})
 	}
 });

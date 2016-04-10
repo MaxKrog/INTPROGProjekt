@@ -5,7 +5,8 @@ module.exports = React.createClass({
 
 	propTypes: {
 		model: React.PropTypes.object.isRequired, //A Backbone-Model
-		dragMethods: React.PropTypes.object.isRequired
+		dragMethods: React.PropTypes.object.isRequired,
+		onDeleteClick: React.PropTypes.func.isRequired
 	},
 
 	getInitialState: function() {
@@ -21,7 +22,7 @@ module.exports = React.createClass({
 
 		var dragMethods = this.props.dragMethods;
 		return(
-			<li className="list-group-item" draggable="true" onDragStart={dragMethods.dragStart} onDragEnd={dragMethods.dragEnd} >
+			<li className="list-group-item" draggable="true"  onDragStart={dragMethods.dragStart} onDragEnd={dragMethods.dragEnd} >
 					<div className="media">
 						<div className="media-left">
 							<span className="badge" style={{width:"50px"}}><h4> 10 </h4></span>
@@ -30,7 +31,7 @@ module.exports = React.createClass({
 							<table width="100%">
 								<tr>
 									<td><h4 className="media-heading">{this.props.model.get("title")}</h4></td>
-									<td width="32"><a href="#"><img src="./img/icons/delete_x.png" width="32" height="32"/></a></td>
+									<td width="32" onClick={this.onClick}><a href="#"><img src="./img/icons/delete_x.png" width="32" height="32"/></a></td>
 								</tr>
 							</table>
 
@@ -40,5 +41,9 @@ module.exports = React.createClass({
 
 			</li>
 		)
+	},
+
+	onClick: function(){
+		this.props.onDeleteClick(this.props.model);
 	}
 });

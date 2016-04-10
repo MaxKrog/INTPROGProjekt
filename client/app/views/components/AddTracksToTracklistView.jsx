@@ -1,6 +1,9 @@
 var React = require("react");
 
 var $ = require("jquery");
+
+//MODELS:
+var TrackModel = require("../../models/TrackModel.js");
 //VIEWS:
 var ListCellView = require("../list/ListCellView.jsx");
 var TracklistListCellView = require("../list/TracklistListCellView.jsx");
@@ -16,30 +19,61 @@ module.exports = React.createClass({
 
 	getInitialState: function(){
 		return {
-			model: this.props.collection.create()
+			trackModel: new TrackModel(),
+			searchText: "",
+			inputMode: "search" //Either "search" or "new"
 		}
+	},
+
+	addToTracklist: function(track) {
+		this.props.collection.add(track);
 	},
 
 	render: function(){
 
-		var dragMethods = {
-			dragStart: this.dragStart,
-			dragEnd: this.dragEnd,
-			dragOver: this.dragOver
+		if(this.state.inputMode === "new"){
+			var button = <button onClick={this.addNewTrack} className="btn btn-success" type="button"> Save and add track </button>
+		} else {
+			var button = <button onClick={this.inputModeNew} className="btn btn-default" type="button"> Add a new Track</button>
 		}
-
 		return(
 			<div className="panel panel-default">
-				<div className="panel-heading" onDragOver={this.dragOver}>
+
+				<div className="panel-heading" >
 					<div className="input-group">
-						<input type="text" className="form-control" placeholder="Search for a track" />
+						<input onFocus={this.searchFocus} type="text" className="form-control" placeholder="Search for a track" />
 						<span className="input-group-btn">
-							<button className="btn btn-default" type="button"> Add a new Track </button>
+							{button}
 						</span>
 					</div>
 				</div>
-				<InfoView model={this.state.model} editing={true} />
+				{this.state.inputMode === "search" ? <div>search </div> : <InfoView model={this.state.trackModel} editing={true} />}
 			</div>
 		)
+	},
+
+	searchFocus: function() {
+		this.setState({
+			inputMode: "search"
+		})
+	},
+
+	inputModeNew: function(){
+		this.setState({
+			inputMode: "new"
+		});
+	},
+
+	addNewTrack: function(){
+		console.log("Add new track!");
+		var _this = this;
+		this.state.trackModel.save().done(function(){
+			_this.props.collection.add(_this.state.trackModel);
+			_this.setState({
+				inputMode: "search",
+				trackModel: new TrackModel()
+			});
+		});
+
 	}
 });

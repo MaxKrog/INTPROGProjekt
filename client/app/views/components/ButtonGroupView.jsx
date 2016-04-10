@@ -12,6 +12,7 @@ module.exports = React.createClass({
 				<div className="btn-group">
 					<button onClick={methods.cancel} className="btn btn-default"> Cancel </button>
 					<button onClick={methods.save} className="btn btn-default"> Save </button>
+					<button onClick={methods.delete} className="btn btn-danger"> Delete </button>
 				</div>
 			)
 		} else {
