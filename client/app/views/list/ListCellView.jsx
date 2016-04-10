@@ -1,10 +1,11 @@
 var React = require("react");
 
 //VIEWS:
-module.exports = React.createClass({
+var ListCellView = React.createClass({
 
 	propTypes: {
-		model: React.PropTypes.object.isRequired //A Backbone-Model
+		model: React.PropTypes.object.isRequired, //A Backbone-Model
+		onClick: React.PropTypes.func.isRequired
 	},
 
 	getInitialState: function() {
@@ -18,7 +19,7 @@ module.exports = React.createClass({
 	render: function(){
 
 		return(
-			<li className="list-group-item" onClick={this.click}>
+			<li className="list-group-item" onClick={this.onClick}>
 				<div className="media">
 					<div className="media-left">
 						<img className="media-object" src={this.state.imgUrl} style={{maxWidth:"30px"}}/>
@@ -32,8 +33,9 @@ module.exports = React.createClass({
 		)
 	},
 
-	click: function() {
-		var model = this.props.model;
-		window.location.hash = "#/" + model.get("type") + "/" + model.id;
+	onClick: function() {
+		this.props.onClick(this.props.model);
 	}
 });
+
+module.exports = ListCellView;

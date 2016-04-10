@@ -4,8 +4,11 @@ var $ = require("jquery");
 
 //MODELS:
 var TrackModel = require("../../models/TrackModel.js");
+
+//COLLECTIONS:
+var TrackCollection = require("../../collections/TrackCollection");
 //VIEWS:
-var ListCellView = require("../list/ListCellView.jsx");
+var ListView = require("../list/ListView.jsx");
 var TracklistListCellView = require("../list/TracklistListCellView.jsx");
 
 var InfoView = require("../info/InfoView.jsx");
@@ -18,10 +21,14 @@ module.exports = React.createClass({
 	},
 
 	getInitialState: function(){
+
+		var trackCollection = new TrackCollection();
+		trackCollection.fetch();
 		return {
 			trackModel: new TrackModel(),
 			searchText: "",
-			inputMode: "search" //Either "search" or "new"
+			inputMode: "search", //Either "search" or "new"
+			trackCollection: trackCollection
 		}
 	},
 
@@ -33,9 +40,12 @@ module.exports = React.createClass({
 
 		if(this.state.inputMode === "new"){
 			var button = <button onClick={this.addNewTrack} className="btn btn-success" type="button"> Save and add track </button>
-		} else {
+		} else if( this.state.inputMode === "search" ){
 			var button = <button onClick={this.inputModeNew} className="btn btn-default" type="button"> Add a new Track</button>
 		}
+
+		var addNewTrackView = <InfoView model={this.state.trackModel} editing={true} />;
+		var searchForTrackView = <ListView collection={this.state.trackCollection} editing={false} onAddClick={this.addToTracklist} />
 		return(
 			<div className="panel panel-default">
 
@@ -47,7 +57,7 @@ module.exports = React.createClass({
 						</span>
 					</div>
 				</div>
-				{this.state.inputMode === "search" ? <div>search </div> : <InfoView model={this.state.trackModel} editing={true} />}
+				{this.state.inputMode === "search" ? searchForTrackView : addNewTrackView}
 			</div>
 		)
 	},
@@ -64,16 +74,23 @@ module.exports = React.createClass({
 		});
 	},
 
-	addNewTrack: function(){
+	addNewTrack: function( track ){ 
 		console.log("Add new track!");
 		var _this = this;
-		this.state.trackModel.save().done(function(){
-			_this.props.collection.add(_this.state.trackModel);
-			_this.setState({
-				inputMode: "search",
-				trackModel: new TrackModel()
+
+		if(this.state.inputMode === "new"){ //Add a new track to the tracklist-tracks.
+			this.state.trackModel.save().done(function(){
+				_this.props.collection.add(_this.state.trackModel);
+				_this.setState({
+					inputMode: "search",
+					trackModel: new TrackModel()
+				});
 			});
-		});
+
+		} else if (this.state.inputMode === "search"){ //Add an already existing track to tracklist-tracks.
+
+		}
+
 
 	}
 });
