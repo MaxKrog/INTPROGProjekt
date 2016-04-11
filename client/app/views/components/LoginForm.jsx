@@ -1,6 +1,8 @@
 var React = require('react');
 
 var LoginForm = React.createClass({
+
+    // CALLBACKS
     handleChange: function() {
         this.props.onUserInput(
             this.refs.usernameInput.value,
