@@ -58,7 +58,7 @@ module.exports = function(options) {
             ReactDOM.render(
                 <TracklistView model={tracklistModel} editing={true} isNew={true} />
                 , element);
-        },
+        }
 
     };
 };

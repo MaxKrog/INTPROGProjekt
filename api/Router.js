@@ -77,6 +77,13 @@ router.get("/tracklist", function(req, res, next){
     })
 })
 
+router.get("/tracklist/filter/:filter", function(req, res, next){ 
+    TracklistModel.find({$text: {$search: req.params.filter}}).select("-tracks").exec( function(err, data){
+        if(err) next(err);
+        res.send(data);
+    })
+})
+
 //GET ONE TRACKLIST AND ALL TRACKS
 router.get("/tracklist/:id", function(req, res, next){ 
     TracklistModel.findById(req.params.id).populate("tracks.track").exec( function(err, data){

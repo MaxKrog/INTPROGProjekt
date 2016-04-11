@@ -19,12 +19,14 @@ module.exports = function(options) {
 
             var tracklistCollection = new TracklistCollection();
 
+            tracklistCollection.url = tracklistCollection.url + '/filter/' + filter;
+            console.log(tracklistCollection.url)
             // /api/tracklist?query=filter 
             var search_params = {
                 query: filter
             };
 
-            tracklistCollection.fetch({data: search_params}).done(function(){
+            tracklistCollection.fetch().done(function(){
 
                 ReactDOM.render(
                     <ListView collection={tracklistCollection} title="Search results" editing={false}/>, element);
