@@ -17,10 +17,12 @@ var LoginForm = React.createClass({
             )
     },
 
+
+    // RENDER VIEW
     render: function() {
         return (
             <div>
-                <h4>Please login:</h4>
+                <h4>{this.props.title}</h4>
                 <form>
                     <input
                         type="text"

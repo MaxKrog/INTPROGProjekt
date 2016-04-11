@@ -8,6 +8,8 @@ var ReactDOM = require("react-dom");
 //VIEWS
 var LoginForm = require("../views/components/LoginForm.jsx");
 
+
+// CONTROL THE DATA
 var LoginClass = React.createClass({
   getInitialState: function() {
     return {
@@ -35,6 +37,7 @@ var LoginClass = React.createClass({
           password={this.state.password}
           onUserInput={this.handleUserInput}
           submit={this.submit}
+          title={this.props.title}
         />
       </div>
     );
@@ -52,8 +55,14 @@ module.exports = function(options) {
         login: function() {
 
                 ReactDOM.render(
-                    <LoginClass />, element);
-            }
+                    <LoginClass title="Please login:"/>, element);
+        },
+
+        createuser: function() {
+
+            ReactDOM.render(
+                <LoginClass title="Create user:"/>, element);
+        }
 
         
     };
