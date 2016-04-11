@@ -9,7 +9,8 @@ $(document).ready(function(){
 		track: require("./controllers/TrackController.js")({element: element}),
 		tracklist: require("./controllers/TracklistController.js")({element: element}),
 		add: require("./controllers/AddController.js")({element: element}),
-		search: require("./controllers/SearchController.js")({element: element})
+		search: require("./controllers/SearchController.js")({element: element}),
+		user: require("./controllers/UserController.js")({element: element})
 	}
     var router = new Router({controllers: controllers});
 
