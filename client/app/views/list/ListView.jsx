@@ -20,8 +20,9 @@ module.exports = React.createClass({
 		var _this = this;
 
 		var dragController = new DragController(this, this.props.collection);
-
 		if(this.props.editing){
+			
+
 			var rows = this.props.collection.models.map(function(model){
 				return <TracklistListCellView model={model} key={model.id} dragController={dragController} onClick={_this.onClick} onDeleteClick={_this.delete}/>
 			})
@@ -47,8 +48,6 @@ module.exports = React.createClass({
 		if(this.props.onAddClick){ //If called with this.props.onAddClick supplied.
 			this.props.onAddClick(model)
 
-		} else { //Called without onClick prop. Just navigate to the item.
-			window.location.hash = "#/" + model.get("type") + "/" + model.id;
 		}
 	}
 

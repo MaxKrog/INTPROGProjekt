@@ -26,15 +26,24 @@ var passport = require("./passport/passport.js");
 app.use(passport.initialize());
 app.use(passport.session());
 
+//DELAY - Fakes real server-latency for all requests to points defined after this (API).
+app.use(function(req, res, next){
+	setTimeout(function(){
+		next();
+	}, 500);
+})
+
 //API Routes all the traffic to /api/ to the file ./api/Router.
 var apiRouter = require("./api/Router");
 app.use("/api", apiRouter);
+
+
 
 //ERROR LOGGER If the request hasnt been answered yet, some error occured.
 app.use(function(err, req, res, next) {
 	console.log("This error hit the logger.");
 	console.log(err);
-	res.status(err.status || 500);
+	res.status(err.status || 1000);
 	res.send(err.responseJSON || err);
 });
 

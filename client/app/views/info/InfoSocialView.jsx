@@ -12,7 +12,7 @@ module.exports = React.createClass({
 	},
 
 	available: function(value) {
-		if(value === null) {
+		if(value === "") {
 			return false;
 		} else {
 			return true;
@@ -26,19 +26,24 @@ module.exports = React.createClass({
 		var sc = this.props.model.get("soundcloud");
 
 		// TODO: grey out icons if no url
+		var style = {
+			width: "50px",
+			height: "50px",
+			marginRight: "10px"
+		}
 		return (
-			<div>
-				<h2><small>Links</small></h2>
-				<table>
-					<tbody>
-						<tr>
-							<td><a href={spt}><img src="./img/icons/spt.png" width="32" height="32" className={this.available(spt) ? null : 'notavailable'}/></a></td>
-							<td><a href={yt}><img src="./img/icons/yt.png" width="32" height="32" className={this.available(yt) ? null : 'notavailable'}/></a></td>
-							<td><a href={sc}><img src="./img/icons/sc.png" width="32" height="32" className={this.available(sc) ? null : 'notavailable'}/></a></td>
-						</tr>
-					</tbody>
-				</table>
+			<div className="center-block">
+				<a href={spt} target="_new" >
+					<img src="./img/icons/spt.png" style={style} className={"img-thumbnail " + (this.available(spt) ? "" : 'notavailable')}/>
+				</a>
+				<a href={yt} target="_new">
+					<img src="./img/icons/yt.png" style={style} className={"img-thumbnail " + (this.available(yt) ? "" : 'notavailable')}/>
+				</a>
+				<a href={sc} target="_new">
+					<img src="./img/icons/sc.png" style={style} className={"img-thumbnail " + (this.available(sc) ? "" : 'notavailable')}/>
+				</a>
 			</div>
+
 		)
 	}
 

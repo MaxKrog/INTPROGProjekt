@@ -27,7 +27,13 @@ module.exports = function(options) {
             tracklistCollection.fetch().done(function(){
 
                 ReactDOM.render(
-                    <ListView collection={tracklistCollection} title="Latest Tracklists" editing={false}/>, element);
+                    <div className="panel panel-default">
+                        <div className="panel-heading">
+                            <h4> Latest Tracklists </h4>
+                        </div>
+                        <ListView collection={tracklistCollection} title="Latest Tracklists" editing={false}/>
+                    </div>
+                    , element);
             });
 
         },
@@ -35,15 +41,6 @@ module.exports = function(options) {
         one: function(id) {
 
             var tracklistModel = new TracklistModel({_id: id});
-           /* var tracklistModel = new TracklistModel({"title":"solomun BR"});
-            var TrackCollection = require("../collections/TrackCollection.js");
-            var trackCollection = new TrackCollection();
-            trackCollection.fetch().done(function(){
-                tracklistModel.set("tracks", trackCollection);
-                tracklistModel.save();
-            })
-            */
-
 
             tracklistModel.fetch().done(function() {
 

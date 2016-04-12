@@ -4,8 +4,7 @@ var React = require("react");
 var ListCellView = React.createClass({
 
 	propTypes: {
-		model: React.PropTypes.object.isRequired, //A Backbone-Model
-		onClick: React.PropTypes.func.isRequired
+		model: React.PropTypes.object.isRequired //A Backbone-Model
 	},
 
 	getInitialState: function() {
@@ -18,8 +17,9 @@ var ListCellView = React.createClass({
 
 	render: function(){
 
+		var href = "#/" + this.props.model.get("type") + "/" + this.props.model.id;
 		return(
-			<li className="list-group-item" onClick={this.onClick}>
+			<a className="list-group-item" href={href} >
 				<div className="media">
 					<div className="media-left">
 						<img className="media-object" src={this.state.imgUrl} style={{maxWidth:"30px"}}/>
@@ -29,12 +29,8 @@ var ListCellView = React.createClass({
 						{this.props.model.get("artist")}
 					</div>
 				</div>
-			</li>
+			</a>
 		)
-	},
-
-	onClick: function() {
-		this.props.onClick(this.props.model);
 	}
 });
 

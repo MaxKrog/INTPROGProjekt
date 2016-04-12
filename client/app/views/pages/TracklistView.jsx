@@ -32,27 +32,22 @@ module.exports = React.createClass({
 		var model = this.props.model;
 
 
-		return(		
-			<div>	
-	        	<div className="row">
-	        		<div className="col-md-8 col-md-offset-2">
-						<div className="panel panel-default">
+		return(
+			<div>		
+				<div className="panel panel-default">
 
-							<InfoView model={model} editing={this.state.editing} />
+					<div className="panel-heading">
+						<ButtonGroupView methods={methods} editing={this.state.editing}  />
+					</div>
 
-							<div className="panel-footer">
-								<ButtonGroupView methods={methods} editing={this.state.editing}  />
-							</div>
-						</div>
-						<div className="panel panel-default">
-							<div className="panel-heading"> Tracks in tracklist </div>
-							<ListView collection={model.tracks} editing={this.state.editing}/>
-						</div>
+					<InfoView model={model} editing={this.state.editing} />
 
-						{this.state.editing? <AddTracksToTracklistView collection={model.tracks}/> : ""}
-	        		</div>	
-	        	</div>
-	        </div>
+					<div className="panel-footer"> Tracks in tracklist </div>
+					<ListView collection={model.tracks} editing={this.state.editing}/>
+				</div>
+
+				{this.state.editing? <AddTracksToTracklistView collection={model.tracks}/> : ""}
+			</div>
 		)
 	},
 

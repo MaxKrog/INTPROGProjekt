@@ -18,32 +18,31 @@ var InfoView = React.createClass({
 	},
 
 	render: function(){ 
-		var _this = this;
 
 		if(this.props.editing){
 			return(
 				<div className="panel-body">
 					<div className="col-md-6">
-						<EditInfoCellView model={_this.props.model} keyName={"title"} />
-						<EditInfoCellView model={_this.props.model} keyName={"artist"} />
-						<EditInfoCellView model={_this.props.model} keyName={"genre"} />
-						<EditInfoCellView model={_this.props.model} keyName={"length"} />
+						<EditInfoCellView model={this.props.model} keyName={"title"} />
+						<EditInfoCellView model={this.props.model} keyName={"artist"} />
+						<EditInfoCellView model={this.props.model} keyName={"genre"} />
+						<EditInfoCellView model={this.props.model} keyName={"length"} />
 					</div>
 					<div className="col-md-6">
-						<EditInfoCellView model={_this.props.model} keyName={"youtube"} />
-						<EditInfoCellView model={_this.props.model} keyName={"soundcloud"} />
-						<EditInfoCellView model={_this.props.model} keyName={"spotify"} />
+						<EditInfoCellView model={this.props.model} keyName={"youtube"} />
+						<EditInfoCellView model={this.props.model} keyName={"soundcloud"} />
+						<EditInfoCellView model={this.props.model} keyName={"spotify"} />
 					</div>
 				</div>
 				)
 		} else {
 			return (		
-				<div className="panel-body">
-					<InfoCellView model={_this.props.model} key={"title"} keyName={"title"} />
-					<InfoCellView model={_this.props.model} key={"artist"} keyName={"artist"} />
-					<InfoCellView model={_this.props.model} key={"genre"} keyName={"genre"} />
-					<InfoCellView model={_this.props.model} key={"length"} keyName={"length"} />
-					<InfoSocialView model={_this.props.model} />
+				<div className="panel-body">	
+					<InfoCellView model={this.props.model} key={"title"} keyName={"title"} />
+					<InfoCellView model={this.props.model} key={"artist"} keyName={"artist"} />
+					<InfoCellView model={this.props.model} key={"genre"} keyName={"genre"} />
+					<InfoCellView model={this.props.model} key={"length"} keyName={"length"} />
+					<InfoSocialView model={this.props.model} />
 				</div>
 				);
 		}

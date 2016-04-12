@@ -13,20 +13,10 @@ module.exports = React.createClass({
 		model: React.PropTypes.object.isRequired //Backbone.Model: UserModel
 	},
 
-	getInitialState: function() {
-		return {
-			error: false
-		}
-	},
-
 	render: function(){ 
 
 		return(		
-        	<div className="row">
-        		<div className="col-md-8 col-md-offset-2">
-        			<LoginFormView model={this.props.model} submitHandler={this.submitHandler}  />
-        		</div>
-        	</div>
+        	<LoginFormView model={this.props.model} submitHandler={this.submitHandler}  />
 		)
 	},
 
