@@ -28,13 +28,22 @@ var TracklistModel = Backbone.Model.extend({
 
 	},
 
+	createdByUser: function() {
+		var user = require("./UserModel.js");
+
+		if(this.get("createdBy") === user.get("username")){
+			return true;
+		} else {
+			return false;
+		}
+	},
+
 	resetToBackup: function(){
 		this.set(this._backupAttributes);
 		this.tracks.reset(this._backupTracks);
 	},
 
 	parse: function(data){
-		console.log(data);
 		if(!this.tracks){
 			this.tracks = new TrackCollection();
 		}

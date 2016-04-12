@@ -32,6 +32,20 @@ var TrackModel = Backbone.Model.extend({
 
 	},
 
+	indexInCollection: function(){
+		return (this.collection.indexOf(this) + 1 );
+	},
+
+	createdByUser: function() {
+		var user = require("./UserModel.js");
+
+		if(this.get("createdBy") === user.get("username")){
+			return true;
+		} else {
+			return false;
+		}
+	},
+
 	resetToBackup: function(){
 		this.set(this._backupAttributes);
 	},
@@ -47,9 +61,7 @@ var TrackModel = Backbone.Model.extend({
 			this.tracklists.reset(data.featuredIn);
 			delete data.featuredIn;
 		}
-		console.log("PARSE");
 		this._backupAttributes = _.clone(data);
-		console.log(data);
 		return data;
 	},
 

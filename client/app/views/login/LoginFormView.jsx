@@ -23,19 +23,17 @@ var LoginFormView = React.createClass({
 
 	//Toggles state.action between "login" and "create". Also resets state.error
 	toggleAction: function(){
-		var action = this.state.action === "login" ? "create" : "login";
 		this.setState({
-			action: action,
+			action: this.state.action === "login" ? "create" : "login",
 			error: false
 		});
 	},
 
 	render: function(){ 
-		console.log(this.props);
 		
 		var isStateLogin = this.state.action === "login" ? true : false; //Boolean value. True if this.state.action === "login". Used for rendering
 
-		var error = this.state.error ? true : false;
+		var error = this.state.error ? true : false; //Error is set by backboneMixin to the error-object. If there is an object, transform it to true.
 
 		if(isStateLogin){
 			var formBody = 
@@ -55,7 +53,7 @@ var LoginFormView = React.createClass({
 		
 
 		return(		
-    		<form className="panel panel-default" ref="form" onSubmit={this.onSubmit}>
+    		<form className="panel panel-default" ref="form">
     			<div className="panel-body">
     				<h2 className="text-center"> Welcome </h2>
     				<h2 className="text-center"><small>{isStateLogin ? "Please log in to be able to contribute." : "Please create an account to be able to contribute." }</small></h2>
@@ -76,11 +74,11 @@ var LoginFormView = React.createClass({
 
 
 	submit: function(e){
-		console.log("Submitted!");
 
 		var formData = {
 			username: this.refs.form["username"].value,
 			password: this.refs.form["password"].value,
+			email: this.refs.form["email"] ? this.refs.form["email"].value : "",
 			action: this.state.action
 		}
 

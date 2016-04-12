@@ -31,7 +31,7 @@ module.exports = function(options) {
                         <div className="panel-heading">
                             <h4> Latest Tracklists </h4>
                         </div>
-                        <ListView collection={tracklistCollection} title="Latest Tracklists" editing={false}/>
+                        <ListView collection={tracklistCollection} title="Latest Tracklists" editing={false} type="unordered"/>
                     </div>
                     , element);
             });

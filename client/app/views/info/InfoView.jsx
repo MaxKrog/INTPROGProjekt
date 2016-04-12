@@ -1,5 +1,5 @@
 var React = require("react");
-
+var backboneMixin = require('backbone-react-component');
 //VIEWS:
 var InfoCellView = require("./InfoCellView.jsx");
 var EditInfoCellView = require("./EditInfoCellView.jsx");
@@ -7,6 +7,8 @@ var ButtonGroupView = require("../components/ButtonGroupView.jsx");
 var InfoSocialView = require("./InfoSocialView.jsx");
 
 var InfoView = React.createClass({
+
+	mixins: [backboneMixin],
 
 	propTypes: {
 		model: React.PropTypes.object.isRequired, //A Backbone-Model
@@ -38,10 +40,11 @@ var InfoView = React.createClass({
 		} else {
 			return (		
 				<div className="panel-body">	
-					<InfoCellView model={this.props.model} key={"title"} keyName={"title"} />
-					<InfoCellView model={this.props.model} key={"artist"} keyName={"artist"} />
-					<InfoCellView model={this.props.model} key={"genre"} keyName={"genre"} />
-					<InfoCellView model={this.props.model} key={"length"} keyName={"length"} />
+					<InfoCellView model={this.props.model} keyName={"title"} />
+					<InfoCellView model={this.props.model} keyName={"artist"} />
+					<InfoCellView model={this.props.model} keyName={"genre"} />
+					<InfoCellView model={this.props.model} keyName={"length"} />
+					<InfoCellView model={this.props.model} keyName={"createdBy"} />
 					<InfoSocialView model={this.props.model} />
 				</div>
 				);

@@ -35,15 +35,12 @@ module.exports = React.createClass({
 		return(
 			<div>		
 				<div className="panel panel-default">
-
-					<div className="panel-heading">
-						<ButtonGroupView methods={methods} editing={this.state.editing}  />
-					</div>
+				
+					{this.props.model.createdByUser() ? <ButtonGroupView methods={methods} editing={this.state.editing}  /> : ""}
 
 					<InfoView model={model} editing={this.state.editing} />
 
-					<div className="panel-footer"> Tracks in tracklist </div>
-					<ListView collection={model.tracks} editing={this.state.editing}/>
+					<ListView collection={model.tracks} editing={this.state.editing} type="ordered"/>
 				</div>
 
 				{this.state.editing? <AddTracksToTracklistView collection={model.tracks}/> : ""}
@@ -66,9 +63,6 @@ module.exports = React.createClass({
 				editing: false
 			});
 		}
-
-		console.log(this.props.model);
-		console.log(this.state.editModel);
 		
 	},
 

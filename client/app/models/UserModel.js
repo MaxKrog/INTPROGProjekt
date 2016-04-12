@@ -3,6 +3,10 @@ var Backbone = require("backbone");
 Backbone.$ = $;
 var _ = require("underscore");
 
+//------------------------------------//
+//--------- EXPORTS A SINGLETON ------//
+//------------------------------------//
+
 var UserModel = Backbone.Model.extend({
 
 	idAttribute: "_id",
@@ -33,9 +37,20 @@ var UserModel = Backbone.Model.extend({
 		} )
 	},
 
-	logout: function() {
-		Backbone.sync("delete", this)
-		this.clear();
+	logout: function(options) {
+		var _this = this;
+		Backbone.sync("delete", this, {
+			success: function(){
+				_this.clear();
+				options.success();
+			},
+			error: function(){
+				console.log("asd");
+				_this.clear();
+				options.success();
+			}
+		})
+		
 	}
 })
 

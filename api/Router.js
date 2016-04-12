@@ -8,11 +8,14 @@ var TracklistModel = require("./TracklistModel");
 
 
 
-router.use(function(req, res, next){
-    req.userID = "55800dc0d4f0fbc2af5396ab";
-    next();
-})
-
+//MIDDLEWARE: To ensure requester is logged in.
+var isUserAuthenticated = function (req, res, next) {
+    if(req.isAuthenticated()){
+        next();
+    } else {
+        res.status(401).send();
+    }
+};
 
 // ------------------------------------------------ //
 // ------------------- TRACKS --------------------- //
@@ -51,8 +54,9 @@ router.put("/track/:id", function(req, res, next){
     })
 })
 
-router.post("/track", function(req, res, next){
-    
+router.post("/track", isUserAuthenticated, function(req, res, next){
+  
+
     console.log(req.body);
     
     var track = new TrackModel(req.body);
@@ -63,7 +67,7 @@ router.post("/track", function(req, res, next){
     })
 })
 
-router.delete("/track/:id", function(req, res, next){
+router.delete("/track/:id", isUserAuthenticated, function(req, res, next){
     TrackModel.findByIdAndRemove(req.params.id, function(err, data){
         if(err) next(err);
         res.end();
@@ -90,7 +94,7 @@ router.get("/tracklist/filter/:filter", function(req, res, next){
 })
 
 //GET ONE TRACKLIST AND ALL TRACKS
-router.get("/tracklist/:id", function(req, res, next){ 
+router.get("/tracklist/:id", function(req, res, next){
     TracklistModel.findById(req.params.id).populate("tracks.track").exec( function(err, data){
         if(err) next(err);
         res.send(data);
@@ -98,18 +102,22 @@ router.get("/tracklist/:id", function(req, res, next){
 })
 
 //UPDATE / EDIT ONE TRACKLIST
-router.put("/tracklist/:id", function(req, res, next){
+router.put("/tracklist/:id", isUserAuthenticated,  function(req, res, next){
     console.log(req.body);
-    TracklistModel.findByIdAndUpdate(req.params.id, req.body).exec( function(err, data){
-        TracklistModel.findById(req.params.id).populate("tracks.track").exec( function(err, data){
-            if(err) next(err);
-            res.send(data);
-        });
+    console.log(req.user);
+
+    TracklistModel.findOneAndUpdate({_id: req.params.id, createdBy: req.user.username}, req.body, {new: true}).populate("tracks.track").exec( function(err, tracklistModel){
+        if(err) next(err);
+
+        if(tracklistModel === null){ //Couldn't find a matching _id and createdby. probably user doesnt have rights to edit this tracklist.
+            res.status(401).send();
+        }
+        res.send(tracklistModel);
     });
 });
 
 //POST A NEW TRACKLIST
-router.post("/tracklist", function(req, res, next){
+router.post("/tracklist", isUserAuthenticated, function(req, res, next){
     
     console.log(req.body);
     req.body.createdBy = "mkrog";
@@ -123,7 +131,7 @@ router.post("/tracklist", function(req, res, next){
 })
 
 //DELETE A TRACKLIST
-router.delete("/tracklist/:id", function(req, res, next){
+router.delete("/tracklist/:id", isUserAuthenticated, function(req, res, next){
     
     TracklistModel.findByIdAndRemove(req.params.id, function(err, data){
         if(err) next(err);
@@ -178,6 +186,10 @@ router.get("/user", function(req, res, next){
 router.delete("/user", function(req, res, next){
     req.logout();
     res.status(200).send();
+
+    req.session.destroy(function (err) {
+        res.status(200).send(); //Inside a callback… bulletproof!
+    });
 })
 
 module.exports = router;

@@ -3,7 +3,7 @@ var backboneMixin = require('backbone-react-component');
 var $ = require("jquery");
 //VIEWS:
 var ListCellView = require("./ListCellView.jsx");
-var TracklistListCellView = require("./TracklistListCellView.jsx");
+var OrderedListCellView = require("./OrderedListCellView.jsx");
 var DragController = require("../../controllers/DragController.js")
 
 module.exports = React.createClass({
@@ -12,7 +12,8 @@ module.exports = React.createClass({
 	propTypes: {
 		collection: React.PropTypes.object.isRequired, //A Backbone-Collection of tracks
 		editing: React.PropTypes.bool.isRequired,
-		onAddClick: React.PropTypes.func
+		onAddClick: React.PropTypes.func,
+		type: React.PropTypes.string.isRequired //"unordered" or "ordered". To know in what context the list is displayed.
 	},
 
 
@@ -20,13 +21,12 @@ module.exports = React.createClass({
 		var _this = this;
 
 		var dragController = new DragController(this, this.props.collection);
-		if(this.props.editing){
-			
 
+		if(this.props.type === "ordered"){
 			var rows = this.props.collection.models.map(function(model){
-				return <TracklistListCellView model={model} key={model.id} dragController={dragController} onClick={_this.onClick} onDeleteClick={_this.delete}/>
+				return <OrderedListCellView model={model} key={model.id} dragController={dragController} onClick={_this.onClick} onDeleteClick={_this.delete}/>
 			})
-		} else {
+		} else if(this.props.type == "unordered") {
 			var rows = this.props.collection.models.map(function(model){
 				return <ListCellView model={model} key={model.id} onClick={_this.onClick}/>
 			})

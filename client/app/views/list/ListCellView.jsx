@@ -22,7 +22,7 @@ var ListCellView = React.createClass({
 			<a className="list-group-item" href={href} >
 				<div className="media">
 					<div className="media-left">
-						<img className="media-object" src={this.state.imgUrl} style={{maxWidth:"30px"}}/>
+						<img className="media-object" src={this.state.imgUrl} style={{maxWidth:"44px"}}/>
 					</div>
 					<div className="media-body">
 						<h4 className="media-heading">{this.props.model.get("title")}</h4>

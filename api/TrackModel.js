@@ -5,6 +5,7 @@ var TrackSchema = new Schema({
     artist: {type: String},
     genre: {type: String},
     length: String,
+    createdBy: {type: String, default: "DEFAULT"},
 	spotify: String,
 	soundcloud: String,
 	youtube: String

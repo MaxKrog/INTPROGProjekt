@@ -24,8 +24,12 @@ var AuthorizationController = function(options) {
             },
 
             logout: function(){
-                user.logout();
-                window.location.hash = "#/";
+                user.logout({
+                    success: function() {
+                        window.location.hash = "#/";
+                    }
+                });
+                
             }
         };
 };

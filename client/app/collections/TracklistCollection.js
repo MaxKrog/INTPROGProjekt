@@ -12,8 +12,6 @@ var TracklistCollection = Backbone.Collection.extend({
 
 	initialize: function(){
 
-		console.log("Created a TracklistModelCollection!");
-
 	},
 
 	parse: function(data){

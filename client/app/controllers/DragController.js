@@ -6,7 +6,6 @@ var $ = require("jquery");
 
 module.exports = function(view, collection) {
 
-    console.log(collection);
     return {
 
         dragStart: function(e) {

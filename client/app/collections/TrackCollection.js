@@ -14,9 +14,6 @@ var TrackCollection = Backbone.Collection.extend({
 
 	initialize: function(){
 
-		console.log("Created a TrackCollection!");
-		console.log(TrackModel);
-
 	},
 
 	parse: function(data){

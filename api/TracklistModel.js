@@ -3,7 +3,7 @@ var mongoose = require("mongoose"), Schema = mongoose.Schema, ObjectId = Schema.
 var TracklistSchema = new Schema({
     title: {type: String, default: ""},
     artist: {type: String, default: ""},
-    createdBy: {type: String, default: "mkrog"},
+    createdBy: {type: String, default: "DEFAULT"},
     genre: {type: String, default: ""},
     length: {type: String, default: ""},
 	spotify: {type: String, default: ""},

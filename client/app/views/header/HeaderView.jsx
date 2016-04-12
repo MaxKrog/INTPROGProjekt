@@ -20,7 +20,7 @@ var HeaderView = React.createClass({
 			<nav className="navbar navbar-default">
 				<div className="container-fluid">
 					<div className="navbar-header">
-						<a className="navbar-brand" href="#">Tracklists</a>
+						<a className="navbar-brand" href="#">{this.props.model.get("username")}</a>
 					</div>
 					<form className="navbar-form navbar-left">
 						<div className="form-group">
@@ -28,10 +28,9 @@ var HeaderView = React.createClass({
 						</div>
 					</form>
 					<ul className="nav navbar-nav"> 
-						<li><a href="#/">Show Tracklists</a></li> 
+						<li><a href="#/">Frontpage</a></li> 
 						<li><a href="#/add/tracklist">Add New Tracklist</a></li> 
 						<li><a href="#/tracks">Show Tracks</a></li>
-						<li><a href="#/add/track">Add new Track</a></li>
 						{toggleLogin}
 					</ul>
 				</div>
