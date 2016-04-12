@@ -1,11 +1,13 @@
 var React = require("react");
-
+var backboneMixin = require('backbone-react-component');
 //VIEWS:
 var EditInfoCellView = require("../info/EditInfoCellView.jsx");
 
 var LoginInputView = require("../login/LoginInputView.jsx");
 
 var LoginFormView = React.createClass({
+
+	mixins: [backboneMixin], //Updates this.state.error if model triggers an error.
 
 	propTypes: {
 		model: React.PropTypes.object.isRequired, //Backbone.Model: UserModel
@@ -14,26 +16,39 @@ var LoginFormView = React.createClass({
 
 	getInitialState: function() {
 		return {
-			action: "login" // "login" or "create"
+			action: "login", // "login" or "create"
+			error: false
 		}
 	},
 
+	//Toggles state.action between "login" and "create". Also resets state.error
+	toggleAction: function(){
+		var action = this.state.action === "login" ? "create" : "login";
+		this.setState({
+			action: action,
+			error: false
+		});
+	},
+
 	render: function(){ 
+		console.log(this.props);
 		
 		var isStateLogin = this.state.action === "login" ? true : false; //Boolean value. True if this.state.action === "login". Used for rendering
+
+		var error = this.state.error ? true : false;
 
 		if(isStateLogin){
 			var formBody = 
 				<div className="panel-body form-horizontal">
-					<LoginInputView title={"Username"} type={"text"} name={"username"} />
-					<LoginInputView title={"Password"} type={"password"} name={"password"} />
+					<LoginInputView title={"Username"} type={"text"} name={"username"} error={error}/>
+					<LoginInputView title={"Password"} type={"password"} name={"password"} error={error}/>
 				</div>
 		} else {
 			var formBody =
 				<div className="panel-body form-horizontal">
-					<LoginInputView title={"Username"} type={"text"} name={"username"} />
-					<LoginInputView title={"Password"} type={"password"} name={"password"} />
-					<LoginInputView title={"Email"} type={"email"} name={"email"} />
+					<LoginInputView title={"Username"} type={"text"} name={"username"} error={error} />
+					<LoginInputView title={"Password"} type={"password"} name={"password"} error={error} />
+					<LoginInputView title={"Email"} type={"email"} name={"email"} error={error} />
 				</div>
 		}
 
@@ -58,11 +73,7 @@ var LoginFormView = React.createClass({
 		)
 	},
 
-	//Toggles state.action between "login" and "create"
-	toggleAction: function(){
-		var action = this.state.action === "login" ? "create" : "login";
-		this.setState({action: action});
-	},
+
 
 	submit: function(e){
 		console.log("Submitted!");

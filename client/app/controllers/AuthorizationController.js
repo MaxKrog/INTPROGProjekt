@@ -2,7 +2,7 @@ var React = require("react");
 var ReactDOM = require("react-dom");
 
 //MODEL
-var userModel = require("../models/UserModel.js"); //Singleton, shared across all instances.
+//var userModel = require("../models/UserModel.js"); //Singleton, shared across all instances.
 //VIEW
 var LoginView = require("../views/pages/LoginView.jsx");
 
@@ -10,10 +10,10 @@ var AuthorizationController = function(options) {
 
     var app = options.app;
     var element = options.element;
-    var user = userModel;
+    var user = require("../models/UserModel.js");
 
         return {
-            
+
             login: function() {
 
                 if(!user.isAuthorized()){

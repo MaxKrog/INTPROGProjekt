@@ -4,10 +4,10 @@ var backboneMixin = require('backbone-react-component');
 var EditInfoCellView = require("../info/EditInfoCellView.jsx");
 
 var LoginInputView = require("../login/LoginInputView.jsx");
-var LoginView = require("../login/LoginFormView.jsx");
+var LoginFormView = require("../login/LoginFormView.jsx");
 module.exports = React.createClass({
 
-	mixins: [backboneMixin],
+	mixins: [backboneMixin], 
 
 	propTypes: {
 		model: React.PropTypes.object.isRequired //Backbone.Model: UserModel
@@ -15,7 +15,7 @@ module.exports = React.createClass({
 
 	getInitialState: function() {
 		return {
-			action: "login" // "login" or "create"
+			error: false
 		}
 	},
 
@@ -24,7 +24,7 @@ module.exports = React.createClass({
 		return(		
         	<div className="row">
         		<div className="col-md-8 col-md-offset-2">
-        			<LoginView model={this.props.model} submitHandler={this.submitHandler} />
+        			<LoginFormView model={this.props.model} submitHandler={this.submitHandler}  />
         		</div>
         	</div>
 		)
@@ -33,14 +33,10 @@ module.exports = React.createClass({
 	submitHandler: function(formData){
 		console.log("LoginView: submitHandler");
 		var _this = this;
+
         this.props.model.save(formData, {
         	success: function(){
         		window.location.hash = "#/";
-        	},
-        	error: function(){
-        		_this.setState({
-        			error: "Something went wrong. Try again."
-        		})
         	}
         });
 	}
