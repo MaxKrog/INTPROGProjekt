@@ -1,6 +1,8 @@
 var mongoose = require("mongoose");
 var router = require("express").Router();
+var passport = require("passport");
 
+var UserModel = require("./UserModel.js");
 var TrackModel = require("./TrackModel");
 var TracklistModel = require("./TracklistModel");
 
@@ -12,7 +14,9 @@ router.use(function(req, res, next){
 })
 
 
-// ---------------- TRACKS --------------- //
+// ------------------------------------------------ //
+// ------------------- TRACKS --------------------- //
+// ------------------------------------------------ //
 router.get("/track", function(req, res, next){
     TrackModel.find().exec( function(err, data){
         if(err) next(err);
@@ -66,8 +70,9 @@ router.delete("/track/:id", function(req, res, next){
     })
 })
 
-
+// ------------------------------------------------ //
 // ------------------- TRACKLISTS ----------------- //
+// ------------------------------------------------ //
 
 //GET ALL TRACKLISTS WITHOUT TRACKS
 router.get("/tracklist", function(req, res, next){ 
@@ -124,6 +129,55 @@ router.delete("/tracklist/:id", function(req, res, next){
         if(err) next(err);
         res.end();
     })
+})
+
+// ------------------------------------------------ //
+// ------------------- AUTHORIZATION -------------- //
+// ------------------------------------------------ //
+
+router.post('/user', function(req, res, next) {
+
+    if(req.body.action === "login"){
+
+        passport.authenticate('local', function(err, user, info) {
+            if (err) return next(err);
+            if (!user) return res.status(401).end();
+
+            req.logIn(user, function(err) {
+                if (err) { return next(err); }
+                    return res.send(user);
+            });
+
+        })(req, res, next);
+
+    } else if(req.body.action === "create"){
+        console.log("Creating user:");
+        console.log(req.body);
+
+        var userModel = new UserModel(req.body);
+        userModel.save(function(err, user){
+            if(err) next(err);
+            req.login(user, function(err){
+                if(err) return next(err);
+                res.send(user);
+
+            });
+        })
+    }
+
+});
+
+router.get("/user", function(req, res, next){
+    if(req.isAuthenticated()){
+        res.send(req.user);
+    } else {
+        res.status(200).send({});
+    }
+})
+
+router.delete("/user", function(req, res, next){
+    req.logout();
+    res.status(200).send();
 })
 
 module.exports = router;

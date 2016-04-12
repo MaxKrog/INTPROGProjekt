@@ -5,7 +5,7 @@ module.exports = React.createClass({
 
 	propTypes: {
 		model: React.PropTypes.object.isRequired, //A Backbone-Model
-		dragMethods: React.PropTypes.object.isRequired,
+		dragController: React.PropTypes.object.isRequired,
 		onDeleteClick: React.PropTypes.func.isRequired
 	},
 
@@ -20,9 +20,9 @@ module.exports = React.createClass({
 	render: function(){
 
 
-		var dragMethods = this.props.dragMethods;
+		var dragController = this.props.dragController;
 		return(
-			<li className="list-group-item" draggable="true"  onDragStart={dragMethods.dragStart} onDragEnd={dragMethods.dragEnd} >
+			<li className="list-group-item" draggable="true"  onDragStart={dragController.dragStart} onDragEnd={dragController.dragEnd} >
 					<div className="media">
 						<div className="media-left">
 							<span className="badge" style={{width:"50px"}}><h4> 10 </h4></span>

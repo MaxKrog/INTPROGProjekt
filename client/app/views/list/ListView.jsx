@@ -19,11 +19,11 @@ module.exports = React.createClass({
 	render: function(){
 		var _this = this;
 
-		var dragMethods = new DragController(this, this.props.collection);
+		var dragController = new DragController(this, this.props.collection);
 
 		if(this.props.editing){
 			var rows = this.props.collection.models.map(function(model){
-				return <TracklistListCellView model={model} key={model.id} dragMethods={dragMethods} onClick={_this.onClick} onDeleteClick={_this.delete}/>
+				return <TracklistListCellView model={model} key={model.id} dragController={dragController} onClick={_this.onClick} onDeleteClick={_this.delete}/>
 			})
 		} else {
 			var rows = this.props.collection.models.map(function(model){
@@ -32,7 +32,7 @@ module.exports = React.createClass({
 		}
 
 		return(
-			<div className="list-group" onDragOver={dragMethods.dragOver}>
+			<div className="list-group" onDragOver={dragController.dragOver}>
 				{rows}
 			</div>
 		)

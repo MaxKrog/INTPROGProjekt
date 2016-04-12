@@ -8,23 +8,18 @@ var ReactDOM = require("react-dom");
 module.exports = BackboneRouteControl.extend({
 
 	routes: {
-        "add": "add#all",
+        "": "tracklist#all",
+        "tracklist/:id": "tracklist#one",
         "tracks": "track#all",
         "track/:id" : "track#one",
         "add/track" : "track#add",
-        "tracklists": "tracklist#all",
-        "tracklist/:id": "tracklist#one",
         "add/tracklist": "tracklist#add",
         "search/:filter": "search#all",
-        "login": "user#login",
-        "add/user": "user#createuser"
+        "login": "authorization#login",
+        "logout": "authorization#logout"
 
 	},
 	initialize: function(){
         console.log("Router initialized!");
-    },
-
-    dev: function(){
-
     }
 });

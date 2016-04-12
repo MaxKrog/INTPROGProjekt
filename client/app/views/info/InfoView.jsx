@@ -24,15 +24,15 @@ var InfoView = React.createClass({
 			return(
 				<div className="panel-body">
 					<div className="col-md-6">
-						<EditInfoCellView model={_this.props.model} key={"title"} keyName={"title"} />
-						<EditInfoCellView model={_this.props.model} key={"artist"} keyName={"artist"} />
-						<EditInfoCellView model={_this.props.model} key={"genre"} keyName={"genre"} />
-						<EditInfoCellView model={_this.props.model} key={"length"} keyName={"length"} />
+						<EditInfoCellView model={_this.props.model} keyName={"title"} />
+						<EditInfoCellView model={_this.props.model} keyName={"artist"} />
+						<EditInfoCellView model={_this.props.model} keyName={"genre"} />
+						<EditInfoCellView model={_this.props.model} keyName={"length"} />
 					</div>
 					<div className="col-md-6">
-						<EditInfoCellView model={_this.props.model} key={"youtube"} keyName={"youtube"} />
-						<EditInfoCellView model={_this.props.model} key={"soundcloud"} keyName={"soundcloud"} />
-						<EditInfoCellView model={_this.props.model} key={"spotify"} keyName={"spotify"} />
+						<EditInfoCellView model={_this.props.model} keyName={"youtube"} />
+						<EditInfoCellView model={_this.props.model} keyName={"soundcloud"} />
+						<EditInfoCellView model={_this.props.model} keyName={"spotify"} />
 					</div>
 				</div>
 				)

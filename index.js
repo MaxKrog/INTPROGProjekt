@@ -17,6 +17,14 @@ app.use(bodyParser.json())
 var logger = require("morgan");
 app.use(logger("dev"));
 
+//SESSION
+var session = require("express-session");
+app.use(session({ secret: 'keyboard cat' }));
+
+//PASSPORT:
+var passport = require("./passport/passport.js");
+app.use(passport.initialize());
+app.use(passport.session());
 
 //API Routes all the traffic to /api/ to the file ./api/Router.
 var apiRouter = require("./api/Router");
@@ -30,6 +38,7 @@ app.use(function(err, req, res, next) {
 	res.send(err.responseJSON || err);
 });
 
+//START the server
 var server = app.listen(3000, function() {
   console.log('Express server listening on port ' + server.address().port);
 });
