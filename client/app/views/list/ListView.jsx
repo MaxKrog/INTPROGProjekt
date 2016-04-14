@@ -4,7 +4,6 @@ var $ = require("jquery");
 //VIEWS:
 var ListCellView = require("./ListCellView.jsx");
 var TracklistListCellView = require("./TracklistListCellView.jsx");
-var DragController = require("../../controllers/DragController.js")
 
 module.exports = React.createClass({
 	mixins: [backboneMixin],
@@ -20,11 +19,9 @@ module.exports = React.createClass({
 	render: function(){
 		var _this = this;
 
-		var dragController = new DragController(this, this.props.collection);
-
 		if(this.props.type === "ordered"){
 			var rows = this.props.collection.models.map(function(model){
-				return <TracklistListCellView model={model} key={model.id} dragController={dragController} onClick={_this.onClick} onDeleteClick={_this.delete}/>
+				return <TracklistListCellView model={model} key={model.id} onClick={_this.onClick} onDeleteClick={_this.delete}/>
 			})
 		} else if(this.props.type == "unordered") {
 			var rows = this.props.collection.models.map(function(model){
@@ -33,7 +30,7 @@ module.exports = React.createClass({
 		}
 
 		return(
-			<div className="list-group" onDragOver={dragController.dragOver}>
+			<div className="list-group">
 				{rows}
 			</div>
 		)

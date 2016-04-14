@@ -1,5 +1,4 @@
 var React = require("react");
-var DragController = require("../../controllers/DragController.js");
 //VIEWS:
 var InfoSocialView = require("../info/InfoSocialView.jsx");
 

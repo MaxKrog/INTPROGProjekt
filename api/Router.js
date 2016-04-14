@@ -58,6 +58,7 @@ router.post("/track", isUserAuthenticated, function(req, res, next){
   
 
     console.log(req.body);
+    req.body.createdBy = req.user.username;
     
     var track = new TrackModel(req.body);
     
@@ -120,7 +121,7 @@ router.put("/tracklist/:id", isUserAuthenticated,  function(req, res, next){
 router.post("/tracklist", isUserAuthenticated, function(req, res, next){
     
     console.log(req.body);
-    req.body.createdBy = "mkrog";
+    req.body.createdBy = req.user.username;
     
     var tracklist = new TracklistModel(req.body);
     
@@ -184,8 +185,6 @@ router.get("/user", function(req, res, next){
 })
 
 router.delete("/user", function(req, res, next){
-    req.logout();
-    res.status(200).send();
 
     req.session.destroy(function (err) {
         res.status(200).send(); //Inside a callback… bulletproof!
