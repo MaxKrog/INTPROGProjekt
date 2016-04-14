@@ -3,7 +3,7 @@ var backboneMixin = require('backbone-react-component');
 var $ = require("jquery");
 //VIEWS:
 var ListCellView = require("./ListCellView.jsx");
-var OrderedListCellView = require("./OrderedListCellView.jsx");
+var TracklistListCellView = require("./TracklistListCellView.jsx");
 var DragController = require("../../controllers/DragController.js")
 
 module.exports = React.createClass({
@@ -24,7 +24,7 @@ module.exports = React.createClass({
 
 		if(this.props.type === "ordered"){
 			var rows = this.props.collection.models.map(function(model){
-				return <OrderedListCellView model={model} key={model.id} dragController={dragController} onClick={_this.onClick} onDeleteClick={_this.delete}/>
+				return <TracklistListCellView model={model} key={model.id} dragController={dragController} onClick={_this.onClick} onDeleteClick={_this.delete}/>
 			})
 		} else if(this.props.type == "unordered") {
 			var rows = this.props.collection.models.map(function(model){

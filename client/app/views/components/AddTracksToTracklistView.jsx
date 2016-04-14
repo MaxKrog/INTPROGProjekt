@@ -10,30 +10,23 @@ var TrackCollection = require("../../collections/TrackCollection");
 //VIEWS:
 var ListView = require("../list/ListView.jsx");
 var TracklistListCellView = require("../list/TracklistListCellView.jsx");
-
+var AddTracklistListView = require("../list/AddTracklistListView.jsx");
 var InfoView = require("../info/InfoView.jsx");
 
 
 module.exports = React.createClass({
 
 	propTypes: {
-		collection: React.PropTypes.object.isRequired, //A Backbone-Collection of tracks
+		collection: React.PropTypes.object.isRequired, // Backbone.Collection: TracklistModel.tracks
 	},
 
 	getInitialState: function(){
 
-		var trackCollection = new TrackCollection();
-		trackCollection.fetch();
 		return {
 			trackModel: new TrackModel(),
-			searchText: "",
-			inputMode: "search", //Either "search" or "new"
-			trackCollection: trackCollection
+			filterString: "",
+			inputMode: "search"
 		}
-	},
-
-	addToTracklist: function(track) {
-		this.props.collection.add(track);
 	},
 
 	render: function(){
@@ -45,7 +38,7 @@ module.exports = React.createClass({
 		}
 
 		var addNewTrackView = <InfoView model={this.state.trackModel} editing={true} />;
-		var searchForTrackView = <ListView collection={this.state.trackCollection} editing={false} onAddClick={this.addToTracklist} />
+		var searchForTrackView = <AddTracklistListView collection={this.props.collection} filterString={this.state.filterString} />
 		return(
 			<div className="panel panel-default">
 

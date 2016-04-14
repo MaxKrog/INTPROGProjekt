@@ -3,7 +3,7 @@ var React = require("react");
 //VIEWS:
 var ButtonGroupView = require("../components/ButtonGroupView.jsx");
 var InfoView = require("../info/InfoView.jsx");
-var ListView = require("../list/ListView.jsx");
+var TracklistListView = require("../list/TracklistListView.jsx");
 
 var AddTracksToTracklistView = require("../components/AddTracksToTracklistView.jsx");
 
@@ -40,7 +40,7 @@ module.exports = React.createClass({
 
 					<InfoView model={model} editing={this.state.editing} />
 
-					<ListView collection={model.tracks} editing={this.state.editing} type="ordered"/>
+					<TracklistListView collection={model.tracks} editing={this.state.editing} />
 				</div>
 
 				{this.state.editing? <AddTracksToTracklistView collection={model.tracks}/> : ""}
