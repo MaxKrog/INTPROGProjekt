@@ -28,7 +28,7 @@ var LoginFormView = React.createClass({
 		var error = this.state.error ? true : false; //Error is set by backboneMixin to the error-object. If there is an object, transform it to true.
 
 		return(		
-    		<form className="panel panel-default" ref="form">
+    		<form className="panel panel-default" ref="form" onSubmit={this.submit}>
     		
     			<div className="panel-body">
     				<h2 className="text-center"> Welcome </h2>
@@ -39,13 +39,12 @@ var LoginFormView = React.createClass({
 					<LoginInputView title={"Username"} type={"text"} name={"username"} error={error}/>
 					<LoginInputView title={"Password"} type={"password"} name={"password"} error={error}/>
 					{!isStateLogin && <LoginInputView title={"Email"} type={"email"} name={"email"} error={error} />}
+					<input type="submit" className="btn btn-success pull-right" value={isStateLogin ? "Log in" : "Create" }/>
 				</div>
 
-    			<div className="panel-body">
-        			<div className="btn-group btn-group-justified">
-        					<a onClick={this.toggleAction} type="button" className="btn btn-default btn-block">{isStateLogin ? "Create account" : "Back to login" } </a>
-        					<a onClick={this.submit} type="button" className="btn btn-default btn-block"> {isStateLogin ? "Log in" : "Submit" } </a>
-        			</div>
+    			<div className="panel-body pull-right">
+					
+        			<a href="javascript:void(0)" onClick={this.toggleAction} width="50%">{isStateLogin ? "Create account" : "Back to login" }</a>
     			</div>
     		</form>
 		)
@@ -60,6 +59,7 @@ var LoginFormView = React.createClass({
 	},
 
 	submit: function(e){
+		e.preventDefault()
 
 		var formData = {
 			username: this.refs.form["username"].value,
