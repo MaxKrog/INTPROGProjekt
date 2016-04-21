@@ -1,9 +1,9 @@
 var React = require("react");
 
 //VIEWS:
-var ButtonGroupView = require("../components/ButtonGroupView.jsx");
+var ButtonGroupView = require("../misc/ButtonGroupView.jsx");
 var InfoView = require("../info/InfoView.jsx");
-var ListView = require("../list/ListView.jsx");
+var SimpleListView = require("../list/SimpleListView.jsx");
 
 
 module.exports = React.createClass({
@@ -36,7 +36,7 @@ module.exports = React.createClass({
 					<ButtonGroupView methods={methods} editing={this.state.editing}  />
 				</div>
 				<div className="panel-body"> Appears in </div>
-				<ListView collection={model.tracklists} editing={false} type={"unordered"}/>
+				<SimpleListView collection={model.tracklists} type={"unordered"}/>
 			</div>  			
 		)
 	},

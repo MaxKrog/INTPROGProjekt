@@ -1,30 +1,20 @@
 var React = require("react");
-
 var Link = require("react-router").Link;
 
-//VIEWS:
-var ListCellView = React.createClass({
+var UnorderedListCellView = React.createClass({
 
 	propTypes: {
 		model: React.PropTypes.object.isRequired //A Backbone-Model
 	},
 
-	getInitialState: function() {
-		var state = {};
-
-		state.imgUrl = this.props.model.get("type") === "track" ? "./img/track.jpeg" : "./img/tracklist.jpeg";
-
-		return state
-	},
-
 	render: function(){
-
+		var imgURL = this.props.model.get("type") === "track" ? "./img/track.jpeg" : "./img/tracklist.jpeg";
 		var href = "/" + this.props.model.get("type") + "/" + this.props.model.id;
 		return(
 			<Link className="list-group-item" to={href} >
 				<div className="media">
 					<div className="media-left">
-						<img className="media-object" src={this.state.imgUrl} style={{maxWidth:"44px"}}/>
+						<img className="media-object" src={imgURL} style={{maxWidth:"44px"}}/>
 					</div>
 					<div className="media-body">
 						<h4 className="media-heading">{this.props.model.get("title")}</h4>
@@ -36,4 +26,4 @@ var ListCellView = React.createClass({
 	}
 });
 
-module.exports = ListCellView;
+module.exports = UnorderedListCellView;

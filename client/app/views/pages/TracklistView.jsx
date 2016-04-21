@@ -1,11 +1,12 @@
 var React = require("react");
 
 //VIEWS:
-var ButtonGroupView = require("../components/ButtonGroupView.jsx");
+var ButtonGroupView = require("../misc/ButtonGroupView.jsx");
 var InfoView = require("../info/InfoView.jsx");
-var TracklistListView = require("../list/TracklistListView.jsx");
 
-var AddTracksToTracklistView = require("../components/AddTracksToTracklistView.jsx");
+var SimpleListView = require("../list/SimpleListView.jsx");
+var ArrangeListView = require("../list/ArrangeListView.jsx");
+var SelectListView = require("../list/SelectListView.jsx");
 
 module.exports = React.createClass({
 
@@ -17,12 +18,6 @@ module.exports = React.createClass({
 		return {
 			editing: false
 		}
-	},
-
-	componentWillReceiveProps: function(nextProps) {
-		this.setState({
-			editing: nextProps.editing
-		});
 	},
 
 	render: function(){ 
@@ -43,12 +38,12 @@ module.exports = React.createClass({
 
 					<InfoView model={model} editing={this.state.editing} />
 
-					{this.props.model.createdByUser() ? <ButtonGroupView methods={methods} editing={this.state.editing}  /> : ""}
+					{this.props.model.createdByUser() && <ButtonGroupView methods={methods} editing={this.state.editing}  /> }
 
-					<TracklistListView collection={model.tracks} editing={this.state.editing} />
+					{this.state.editing ? <ArrangeListView collection={model.tracks} /> : <SimpleListView collection={model.tracks} type="ordered" /> }
 				</div>
 
-				{this.state.editing? <AddTracksToTracklistView collection={model.tracks}/> : ""}
+
 			</div>
 		)
 	},

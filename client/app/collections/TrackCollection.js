@@ -22,6 +22,18 @@ var TrackCollection = Backbone.Collection.extend({
 
 		return data;
 	},
+	
+	moveUp: function(model) {
+		var modelIndex = this.indexOf(model);
+		this.swapPlaces(modelIndex, modelIndex - 1 );
+		this.trigger("change");
+	},
+	
+	moveDown: function(model) {
+		var modelIndex = this.indexOf(model);
+		this.swapPlaces(modelIndex, modelIndex + 1);
+		this.trigger("change");
+	},
 
 	swapPlaces : function(index1, index2) {
         this.models[index1] = this.models.splice(index2, 1, this.models[index1])[0];

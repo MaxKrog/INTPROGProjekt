@@ -6,7 +6,7 @@ var TracklistStore = require("../../stores/TracklistStore.js");
 
 //VIEWS:
 var TracklistView = require("./TracklistView.jsx");
-var LoadingView = require("../components/LoadingView.jsx");
+var LoadingView = require("../misc/LoadingView.jsx");
 var TracklistViewPresenter = React.createClass({
 
 	getInitialState: function(){

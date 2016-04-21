@@ -33,7 +33,7 @@ var TrackModel = Backbone.Model.extend({
 	},
 
 	indexInCollection: function(){
-		return (this.collection.indexOf(this) + 1 );
+		return this.collection.indexOf(this);
 	},
 
 	createdByUser: function() {

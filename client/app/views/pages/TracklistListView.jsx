@@ -1,12 +1,10 @@
 var React = require("react");
 
-
 //STORE:
 var TracklistStore = require("../../stores/TracklistStore.js");
 //VIEWS:
-var ListView = require("../list/ListView.jsx");
+var SimpleListView = require("../list/SimpleListView.jsx");
 
-var TracklistCollection = require("../../collections/TracklistCollection.js");
 module.exports = React.createClass({
 
 	getInitialState: function(){
@@ -30,7 +28,7 @@ module.exports = React.createClass({
                     <h4> Latest Tracklists </h4>
                 </div>
                 {this.state.collection ? 
-                	<ListView collection={this.state.collection} title="Latest Tracklists" editing={false} type="unordered"/>
+                	<SimpleListView collection={this.state.collection} type="unordered"/>
                 	: <div> loading </div>}
             </div>
 		)

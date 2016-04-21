@@ -4,7 +4,7 @@ var React = require("react");
 var userModel = require("../../models/UserModel.js");
 
 //VIEWS
-var LoadingView = require("../components/LoadingView.jsx");
+var LoadingView = require("../misc/LoadingView.jsx");
 var LogoutView = React.createClass({
 	
 	contextTypes: {
