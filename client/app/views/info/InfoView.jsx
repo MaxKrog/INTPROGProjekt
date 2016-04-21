@@ -15,10 +15,6 @@ var InfoView = React.createClass({
 		editing: React.PropTypes.bool.isRequired
 	},
 
-	getInitialState: function() {
-		return {};
-	},
-
 	render: function(){ 
 
 		if(this.props.editing){

@@ -8,6 +8,11 @@ var userModel = require("../../models/UserModel.js");
 
 module.exports = React.createClass({
 
+	componentDidMount: function() {
+		if(userModel.isAuthorized()){
+			this.props.history.push("/");
+		}
+	},
 
 	render: function(){ 
 
@@ -20,6 +25,7 @@ module.exports = React.createClass({
 		var _this = this;
 
         userModel.save(formData, {
+			wait: true,
         	success: function(){
         		window.location.hash = "#/";
         	}

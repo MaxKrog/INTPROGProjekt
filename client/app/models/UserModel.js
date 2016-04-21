@@ -14,7 +14,6 @@ var UserModel = Backbone.Model.extend({
 	url: "api/user",
 
 	initialize: function(){
-		console.log("Inited a UserModel!");
 		this.fetchStatus();
 	},
 

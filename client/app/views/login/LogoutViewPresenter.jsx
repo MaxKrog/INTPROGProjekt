@@ -1,15 +1,19 @@
 var React = require("react");
 
+//STORES
 var userModel = require("../../models/UserModel.js");
 
+//VIEWS
+var LoadingView = require("../components/LoadingView.jsx");
 var LogoutView = React.createClass({
-
+	
 	contextTypes: {
-		router: React.PropTypes.func
+		router: React.PropTypes.object
 	},
 
 	componentDidMount: function() {
 		var _this = this;
+		console.log(this.context);
 		userModel.logout({
             success: function() {
                 _this.context.router.push("/");
@@ -18,7 +22,7 @@ var LogoutView = React.createClass({
 	},
 
 	render: function() {
-		return <div> Youre being logged out and will be redirected </div>
+		return <LoadingView />
 	}
 
 });

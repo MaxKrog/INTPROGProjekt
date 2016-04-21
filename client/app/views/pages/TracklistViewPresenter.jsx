@@ -6,7 +6,7 @@ var TracklistStore = require("../../stores/TracklistStore.js");
 
 //VIEWS:
 var TracklistView = require("./TracklistView.jsx");
-
+var LoadingView = require("../components/LoadingView.jsx");
 var TracklistViewPresenter = React.createClass({
 
 	getInitialState: function(){
@@ -25,9 +25,8 @@ var TracklistViewPresenter = React.createClass({
 	render: function () {
 		if(this.state.model){
 			return <TracklistView model={this.state.model} />
-
 		} else {
-			return <div> LOADING </div>
+			return <LoadingView />
 		}
 	}
 

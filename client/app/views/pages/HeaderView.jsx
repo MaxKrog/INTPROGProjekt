@@ -1,22 +1,26 @@
 var React = require("react");
-var Backbone = require("backbone");
 var backboneMixin = require('backbone-react-component');
 var Link = require("react-router").Link;
 
 var UserModel = require("../../models/UserModel.js");
 
 var HeaderView = React.createClass({
+	
 	mixins: [backboneMixin],
-
-
-	getInitialState: function(){
+	
+	getInitialState: function() {
+		UserModel.on("all", function(){
+			this.forceUpdate();
+		}, this);
+		
 		return {
 			user: UserModel
 		}
+		
 	},
 
-	render: function() {
 
+	render: function() {
 		var user = this.state.user
 
 		if(user.isAuthorized()){

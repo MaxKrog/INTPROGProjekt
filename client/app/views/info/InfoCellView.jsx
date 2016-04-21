@@ -8,14 +8,11 @@ module.exports = React.createClass({
 		keyName: React.PropTypes.string.isRequired
 	},
 
-	componentWillMount: function(){
-
-	},
-
 	render: function() {
 
 		var keyName = this.props.keyName;
 		var value = this.props.model.get(this.props.keyName);
+		if(value == " "){ value = "-";}
 
 		return (
 			<h2><small>{capitalize(keyName)}: </small>{value}</h2>

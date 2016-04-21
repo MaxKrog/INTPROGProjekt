@@ -57,7 +57,6 @@ var TrackModel = Backbone.Model.extend({
 		}
 
 		if(data.featuredIn){
-			console.log("Fea");
 			this.tracklists.reset(data.featuredIn);
 			delete data.featuredIn;
 		}
