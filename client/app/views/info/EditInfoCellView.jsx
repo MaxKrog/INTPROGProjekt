@@ -7,11 +7,7 @@ module.exports = React.createClass({
 		model: React.PropTypes.object.isRequired, //A Backbone-Model
 		keyName: React.PropTypes.string.isRequired
 	},
-
-	componentWillMount: function(){
-
-	},
-
+	
 	render: function() {
 
 		var keyName = this.props.keyName;

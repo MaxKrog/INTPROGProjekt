@@ -1,9 +1,9 @@
 var React = require("react");
 var backboneMixin = require('backbone-react-component');
+
 //VIEWS:
 var InfoCellView = require("./InfoCellView.jsx");
 var EditInfoCellView = require("./EditInfoCellView.jsx");
-var ButtonGroupView = require("../components/ButtonGroupView.jsx");
 var InfoSocialView = require("./InfoSocialView.jsx");
 
 var InfoView = React.createClass({

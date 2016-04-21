@@ -44,7 +44,7 @@ var LoginFormView = React.createClass({
     			<div className="panel-body">
         			<div className="btn-group btn-group-justified">
         					<a onClick={this.toggleAction} type="button" className="btn btn-default btn-block">{isStateLogin ? "Create account" : "Back to login" } </a>
-        					<a onClick={this.submit} type="button" className="btn btn-default btn-block"> {isStateLogin ? "Log in" : "Create account" } </a>
+        					<a onClick={this.submit} type="button" className="btn btn-default btn-block"> {isStateLogin ? "Log in" : "Submit" } </a>
         			</div>
     			</div>
     		</form>

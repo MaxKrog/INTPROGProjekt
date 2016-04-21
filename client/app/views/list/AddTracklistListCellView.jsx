@@ -11,7 +11,7 @@ var AddTracklistListCellView = React.createClass({
 	mixins: [backboneMixin],
 
 	propTypes: {
-		model: React.PropTypes.object.isRequired, //A Backbone-Collection of tracks
+		model: React.PropTypes.object.isRequired, //Backbone.Model: TrackModel
 		onClick: React.PropTypes.func.isRequired
 	},
 
