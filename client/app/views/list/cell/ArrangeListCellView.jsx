@@ -31,8 +31,7 @@ var ArrangeListCellView = React.createClass({
     },
     
     moveUp: function(){
-        this.props.model.collection.moveUp(this.props.model);
-        
+        this.props.model.collection.moveUp(this.props.model)    
     },
     
     moveDown: function() {
