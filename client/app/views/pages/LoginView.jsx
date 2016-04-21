@@ -27,7 +27,8 @@ module.exports = React.createClass({
         this.props.model.save(formData, {
         	success: function(){
         		window.location.hash = "#/";
-        	}
+        	},
+        	wait: true
         });
 	}
 });

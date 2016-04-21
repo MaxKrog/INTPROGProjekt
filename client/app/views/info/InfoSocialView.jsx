@@ -8,10 +8,6 @@ module.exports = React.createClass({
 		marginRight : React.PropTypes.string
 	},
 
-	componentWillMount: function(){
-
-	},
-
 	available: function(value) {
 		if(value === "" || value === null) {
 			return false;
