@@ -59,7 +59,6 @@ var LoginFormView = React.createClass({
 	},
 
 	submit: function(e){
-		console.log("Hej")
 		e.preventDefault()
 
 		var formData = {

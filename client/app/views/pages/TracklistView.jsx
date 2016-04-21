@@ -21,7 +21,14 @@ module.exports = React.createClass({
 		}
 	},
 
+	componentWillReceiveProps: function(nextProps) {
+		this.setState({
+			editing: nextProps.editing
+		});
+	},
+
 	render: function(){ 
+
 		var _this = this;
 		var methods = {
 			edit: this.edit,

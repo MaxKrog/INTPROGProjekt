@@ -11,6 +11,7 @@ var ListView = require("../views/list/ListView.jsx");
 var InfoView = require("../views/info/InfoView.jsx");
 
 var TracklistView = require("../views/pages/TracklistView.jsx");
+var LoadingView = require("../views/components/LoadingView.jsx");
 
 module.exports = function(options) {
 
@@ -41,6 +42,10 @@ module.exports = function(options) {
         one: function(id) {
 
             var tracklistModel = new TracklistModel({_id: id});
+
+            ReactDOM.render(
+                <LoadingView/>
+                ,element);
 
             tracklistModel.fetch().done(function() {
 
