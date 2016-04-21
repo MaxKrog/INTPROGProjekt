@@ -1,27 +1,29 @@
-var $ = require("jquery");
-var Backbone = require("backbone");
 var React = require("react");
-var ReactDOM = require("react-dom");
+var ReactDOM = require('react-dom');
+var Router = require('react-router').Router;
+var IndexRoute = require("react-router").IndexRoute;
+var HashHistory = require("react-router").hashHistory;
+var Route = require('react-router').Route;
 
-var Router = require("./Router.js");
+var HeaderView = require("./HeaderView.jsx");
+var TracklistListView = require("./views/pages/TracklistListView.jsx");
+var TracklistViewPresenter = require("./views/pages/TracklistViewPresenter.jsx");
+var TrackViewPresenter = require("./views/pages/TrackViewPresenter.jsx");
 
-var userModel = require("./models/UserModel.js");
+var LoginViewPresenter = require("./views/pages/LoginViewPresenter.jsx");
+var LogoutViewPresenter = require("./views/pages/LogoutViewPresenter.jsx");
 
-$(document).ready(function(){
+ReactDOM.render((
+	<Router history={HashHistory} >
+		<Route path="/" component={HeaderView}>
+			<IndexRoute component={TracklistListView} />
+			<Route path="/tracklist/:id" component={TracklistViewPresenter} />
+			<Route path="/track/:id" component={TrackViewPresenter} />
 
-	var header = document.getElementById("header");
-	var element = document.getElementById("app");
-	var controllers = {
-		track: require("./controllers/TrackController.js")({element: element}),
-		tracklist: require("./controllers/TracklistController.js")({element: element}),
-		search: require("./controllers/SearchController.js")({element: element}),
-		authorization: require("./controllers/AuthorizationController.js")({element: element}),
-		header: require("./controllers/HeaderController.js")({element: header, model: userModel })
-	}
-    var router = new Router({controllers: controllers});
-
-    Backbone.history.start();
-    
-})
-
-window.userModel = userModel;
+			<Route path="/login" component={LoginViewPresenter} />
+			<Route path="/logout" component={LogoutViewPresenter} />
+		</Route>
+		
+	</Router>
+	),
+document.getElementById("app"));

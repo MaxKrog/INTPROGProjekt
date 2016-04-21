@@ -10,14 +10,12 @@ var AddTracksToTracklistView = require("../components/AddTracksToTracklistView.j
 module.exports = React.createClass({
 
 	propTypes: {
-		editing: React.PropTypes.bool.isRequired, 
-		isNew: React.PropTypes.bool.isRequired,
 		model: React.PropTypes.object.isRequired //A Backbone-Model
 	},
 
 	getInitialState: function() {
 		return {
-			editing: this.props.editing || false
+			editing: false
 		}
 	},
 
@@ -35,10 +33,10 @@ module.exports = React.createClass({
 		return(
 			<div>		
 				<div className="panel panel-default">
-				
-					{this.props.model.createdByUser() ? <ButtonGroupView methods={methods} editing={this.state.editing}  /> : ""}
 
 					<InfoView model={model} editing={this.state.editing} />
+
+					{this.props.model.createdByUser() ? <ButtonGroupView methods={methods} editing={this.state.editing}  /> : ""}
 
 					<TracklistListView collection={model.tracks} editing={this.state.editing} />
 				</div>
@@ -49,7 +47,6 @@ module.exports = React.createClass({
 	},
 
 	edit: function() {
-		console.log("Editing!");
 		this.setState({editing: true});
 
 	},

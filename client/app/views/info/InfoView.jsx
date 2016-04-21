@@ -40,6 +40,7 @@ var InfoView = React.createClass({
 		} else {
 			return (		
 				<div className="panel-body">	
+					<h2> Track Info: </h2>
 					<InfoCellView model={this.props.model} keyName={"title"} />
 					<InfoCellView model={this.props.model} keyName={"artist"} />
 					<InfoCellView model={this.props.model} keyName={"genre"} />

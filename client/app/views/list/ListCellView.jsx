@@ -1,5 +1,7 @@
 var React = require("react");
 
+var Link = require("react-router").Link;
+
 //VIEWS:
 var ListCellView = React.createClass({
 
@@ -17,9 +19,9 @@ var ListCellView = React.createClass({
 
 	render: function(){
 
-		var href = "#/" + this.props.model.get("type") + "/" + this.props.model.id;
+		var href = "/" + this.props.model.get("type") + "/" + this.props.model.id;
 		return(
-			<a className="list-group-item" href={href} >
+			<Link className="list-group-item" to={href} >
 				<div className="media">
 					<div className="media-left">
 						<img className="media-object" src={this.state.imgUrl} style={{maxWidth:"44px"}}/>
@@ -29,7 +31,7 @@ var ListCellView = React.createClass({
 						{this.props.model.get("artist")}
 					</div>
 				</div>
-			</a>
+			</Link>
 		)
 	}
 });

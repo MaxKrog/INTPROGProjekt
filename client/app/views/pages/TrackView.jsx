@@ -9,14 +9,12 @@ var ListView = require("../list/ListView.jsx");
 module.exports = React.createClass({
 
 	propTypes: {
-		editing: React.PropTypes.bool.isRequired, 
-		isNew: React.PropTypes.bool.isRequired,
 		model: React.PropTypes.object.isRequired //A Backbone-Model
 	},
 
 	getInitialState: function() {
 		return {
-			editing: this.props.editing || false
+			editing: false
 		}
 	},
 
@@ -30,24 +28,21 @@ module.exports = React.createClass({
 		};
 
 		var model = this.props.model;
-		console.log(model);
-
 
 		return(		
     		<div className="panel panel-default">
-    			<div className="panel-footer">
+				<InfoView model={model} editing={this.state.editing} />
+				<div className="panel-footer">
 					<ButtonGroupView methods={methods} editing={this.state.editing}  />
 				</div>
-				<InfoView model={model} editing={this.state.editing} />
-				<ListView collection={model.tracklists} editing={false}/>
+				<div className="panel-body"> Appears in </div>
+				<ListView collection={model.tracklists} editing={false} type={"unordered"}/>
 			</div>  			
 		)
 	},
 
 	edit: function() {
-		console.log("Editing!");
 		this.setState({editing: true});
-
 	},
 
 	cancel: function () {
@@ -59,9 +54,6 @@ module.exports = React.createClass({
 				editing: false
 			});
 		}
-
-		console.log(this.props.model);
-		console.log(this.state.editModel);
 		
 	},
 

@@ -22,7 +22,6 @@ module.exports = React.createClass({
 		var yt = this.props.model.get("youtube");
 		var sc = this.props.model.get("soundcloud");
 
-		// TODO: grey out icons if no url
 		var style = {
 			width: "40px",
 			height: "40px",

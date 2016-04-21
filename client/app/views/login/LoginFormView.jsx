@@ -1,8 +1,8 @@
 var React = require("react");
 var backboneMixin = require('backbone-react-component');
+
 //VIEWS:
 var EditInfoCellView = require("../info/EditInfoCellView.jsx");
-
 var LoginInputView = require("../login/LoginInputView.jsx");
 
 var LoginFormView = React.createClass({
