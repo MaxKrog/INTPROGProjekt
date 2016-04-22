@@ -9,9 +9,8 @@ var TrackStore =  function () {
 
 		getAll: function(callback){
 
-			trackCollection.fetch().done(function(){
-				callback(null, trackCollection);
-			})
+			trackCollection.fetch();
+			return trackCollection;
 
 		},
 

@@ -6,7 +6,9 @@ var InfoView = require("../info/InfoView.jsx");
 
 var SimpleListView = require("../list/SimpleListView.jsx");
 var ArrangeListView = require("../list/ArrangeListView.jsx");
-var SelectListView = require("../list/SelectListView.jsx");
+
+var AddTrackstoTracklistView = require("../misc/AddTrackstoTracklistView.jsx");
+
 
 module.exports = React.createClass({
 
@@ -28,9 +30,7 @@ module.exports = React.createClass({
 			save: this.save,
 			cancel: this.cancel
 		};
-
 		var model = this.props.model;
-
 
 		return(
 			<div>		
@@ -43,6 +43,7 @@ module.exports = React.createClass({
 					{this.state.editing ? <ArrangeListView collection={model.tracks} /> : <SimpleListView collection={model.tracks} type="ordered" /> }
 				</div>
 
+				{this.state.editing && <AddTrackstoTracklistView collection={this.props.model.tracks} />}
 
 			</div>
 		)

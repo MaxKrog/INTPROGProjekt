@@ -1,17 +1,13 @@
 var React = require("react");
 
-var $ = require("jquery");
-
 //MODELS:
 var TrackModel = require("../../models/TrackModel.js");
 
 //COLLECTIONS:
 var TrackCollection = require("../../collections/TrackCollection");
 //VIEWS:
-var ListView = require("../list/ListView.jsx");
-var TracklistListCellView = require("../list/TracklistListCellView.jsx");
-var AddTracklistListView = require("../list/AddTracklistListView.jsx");
 var InfoView = require("../info/InfoView.jsx");
+var SelectListView = require("../list/SelectListView.jsx");
 
 
 module.exports = React.createClass({
@@ -31,14 +27,6 @@ module.exports = React.createClass({
 
 	render: function(){
 
-		if(this.state.inputMode === "new"){
-			var button = <button onClick={this.addNewTrack} className="btn btn-success" type="button"> Save and add track </button>
-		} else if( this.state.inputMode === "search" ){
-			var button = <button onClick={this.inputModeNew} className="btn btn-default" type="button"> Add a new Track</button>
-		}
-
-		var addNewTrackView = <InfoView model={this.state.trackModel} editing={true} />;
-		var searchForTrackView = <AddTracklistListView collection={this.props.collection} filterString={this.state.filterString} />
 		return(
 			<div className="panel panel-default">
 
@@ -46,11 +34,13 @@ module.exports = React.createClass({
 					<div className="input-group">
 						<input onFocus={this.searchFocus} type="text" className="form-control" placeholder="Search for a track" />
 						<span className="input-group-btn">
-							{button}
+							{this.state.inputMode === "new" && <button onClick={this.addNewTrack} className="btn btn-success" type="button"> Save and add track </button>}
+							{this.state.inputMode === "search" && <button onClick={this.inputModeNew} className="btn btn-default" type="button"> Add a new Track</button>}
 						</span>
 					</div>
 				</div>
-				{this.state.inputMode === "search" ? searchForTrackView : addNewTrackView}
+				{this.state.inputMode === "new " && <InfoView model={this.state.trackModel} editing={true} />}
+				{this.state.inputMode === "search" && <SelectListView collection={this.props.collection} filterString={this.state.filterString} />}
 			</div>
 		)
 	},
