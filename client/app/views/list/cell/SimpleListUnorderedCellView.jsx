@@ -14,7 +14,8 @@ var UnorderedListCellView = React.createClass({
 			<Link className="list-group-item" to={href} >
 				<div className="media">
 					<div className="media-left">
-						<img className="media-object" src={imgURL} style={{maxWidth:"44px"}}/>
+						{/*<img className="media-object" src={imgURL} style={{maxWidth:"44px"}}/>*/}
+						<span className="glyphicon glyphicon-music" style={{maxWidth:"44px"}}></span>
 					</div>
 					<div className="media-body">
 						<h4 className="media-heading">{this.props.model.get("title")}</h4>

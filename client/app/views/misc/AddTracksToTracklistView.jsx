@@ -28,17 +28,15 @@ module.exports = React.createClass({
 	render: function(){
 
 		return(
-			<div className="panel panel-default">
-
-				<div className="panel-heading" >
-					<div className="input-group">
-						<input onFocus={this.searchFocus} type="text" className="form-control" placeholder="Search for a track" />
-						<span className="input-group-btn">
-							{this.state.inputMode === "new" && <button onClick={this.addNewTrack} className="btn btn-success" type="button"> Save and add track </button>}
-							{this.state.inputMode === "search" && <button onClick={this.inputModeNew} className="btn btn-default" type="button"> Add a new Track</button>}
-						</span>
-					</div>
+			<div>
+				<div>
+					<p className="text-center">				
+						{this.state.inputMode === "new" && <button onClick={this.addNewTrack} className="btn btn-success go inline" type="button"> Save and add track </button>}
+						{this.state.inputMode === "search" && <button onClick={this.inputModeNew} className="btn btn-default go inline" type="button"> Add a new Track</button>}
+					</p>
+					<input onFocus={this.searchFocus} type="text" className="form-control" placeholder="Search for an existing track" />
 				</div>
+
 				{this.state.inputMode === "new " && <InfoView model={this.state.trackModel} editing={true} />}
 				{this.state.inputMode === "search" && <SelectListView collection={this.props.collection} filterString={this.state.filterString} />}
 			</div>

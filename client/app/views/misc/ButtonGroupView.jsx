@@ -8,22 +8,24 @@ module.exports = React.createClass({
 
 		if(this.props.editing){
 			return (
-				<div className="panel-heading">
-					<div className="btn-group btn-group-justified">
+				<div>
+					<div className="btn-group">
 						<a onClick={methods.cancel} className="btn btn-warning"> Cancel </a>
 						<a onClick={methods.save} className="btn btn-success"> Save </a>
-						<a onClick={methods.delete} className="btn btn-danger"> Delete </a>
 					</div>
+		
+					<a className="pull-right" href="javascript:void(0)" onClick={methods.delete}> 
+						<span className="glyphicon glyphicon-trash"/>
+					</a>
 				</div>
+
 			)
 		} else {
 			return (
 				<div className="panel-heading">
-					<div className="btn-group btn-group-justified">
-						<a onClick={methods.edit} className="btn btn-default "> Edit </a>
-					</div>
+					<a onClick={methods.edit} className="btn btn-default"> Edit </a>
 				</div>
-				)
+			)
 		}
 	},
 

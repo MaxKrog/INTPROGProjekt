@@ -30,13 +30,16 @@ module.exports = React.createClass({
 		var model = this.props.model;
 
 		return(		
-    		<div className="panel panel-default">
-				<InfoView model={model} editing={this.state.editing} />
-				<div className="panel-footer">
+    		<div>
+	    		<div className="col-md-3" style={{borderRight: "1px solid"}}>
+					<InfoView model={model} editing={this.state.editing} />
 					<ButtonGroupView methods={methods} editing={this.state.editing}  />
 				</div>
-				<div className="panel-body"> Appears in </div>
-				<SimpleListView collection={model.tracklists} type={"unordered"}/>
+			
+				<div className="col-md-9">	
+					<h4> Appears in </h4>
+					<SimpleListView collection={model.tracklists} type={"unordered"}/>
+				</div>
 			</div>  			
 		)
 	},

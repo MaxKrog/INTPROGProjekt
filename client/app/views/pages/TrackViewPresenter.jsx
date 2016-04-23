@@ -5,6 +5,7 @@ var React = require("react");
 var TrackStore = require("../../stores/TrackStore.js");
 //VIEWS:
 var TrackView = require("./TrackView.jsx");
+var LoadingView = require("../misc/LoadingView.jsx");
 
 
 module.exports = React.createClass({
@@ -28,7 +29,7 @@ module.exports = React.createClass({
 			return <TrackView model={this.state.model} />
 
 		} else {
-			return <div> LOADING </div>
+			return <LoadingView/>
 		}
 	}
 });

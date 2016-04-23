@@ -28,23 +28,22 @@ module.exports = React.createClass({
 		var methods = {
 			edit: this.edit,
 			save: this.save,
-			cancel: this.cancel
+			cancel: this.cancel,
+			delete: this.delete
 		};
 		var model = this.props.model;
 
 		return(
-			<div>		
-				<div className="panel panel-default">
-
+			<div>
+				<div className="col-md-3" style={{borderRight: "1px solid"}}>	
 					<InfoView model={model} editing={this.state.editing} />
-
-					{this.props.model.createdByUser() && <ButtonGroupView methods={methods} editing={this.state.editing}  /> }
-
-					{this.state.editing ? <ArrangeListView collection={model.tracks} /> : <SimpleListView collection={model.tracks} type="ordered" /> }
+					{this.props.model.createdByUser() && <ButtonGroupView methods={methods} editing={this.state.editing}/> }
+											
 				</div>
-
-				{this.state.editing && <AddTrackstoTracklistView collection={this.props.model.tracks} />}
-
+				<div className="col-md-9">
+					<h4 className="text-center">Tracks</h4>
+					{this.editing()}
+				</div>
 			</div>
 		)
 	},
@@ -70,10 +69,28 @@ module.exports = React.createClass({
 		var _this = this;
 
 		this.props.model.save().done(function(){
-			console.log("Saved!");
 			_this.setState({
 				editing: false
 			});
 		})
+	},
+
+	delete: function() {
+		alert("Delete " + this.props.model.get("title") + "?");
+	},
+
+	editing: function() {
+		console.log("hej")
+		if(this.state.editing){
+			return (
+				<div>
+					<ArrangeListView collection={this.props.model.tracks} />
+					<br/><h4 className="text-center">Add tracks to tracklist:</h4>
+					<AddTrackstoTracklistView collection={this.props.model.tracks}/>
+				</div>
+			)
+		} else {
+			return <SimpleListView collection={this.props.model.tracks} type="ordered" />
+		}
 	}
 });

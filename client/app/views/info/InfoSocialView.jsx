@@ -23,20 +23,20 @@ module.exports = React.createClass({
 		var sc = this.props.model.get("soundcloud");
 
 		var style = {
-			width: "40px",
-			height: "40px",
-			marginRight: this.props.marginRight || "10px"
+			width: "32px",
+			height: "32px",
+			marginRight: this.props.marginRight || "20px"
 		}
 		return (
-			<div className="center-block">
+			<div>
 				<a href={spt} target="_new" onClick={this.onClick} >
-					<img src="./img/icons/spt.png" style={style} className={"img-thumbnail " + (this.available(spt) ? "" : 'notavailable')}/>
+					<img src="./img/icons/spt.png" style={style} className={(this.available(spt) ? "" : 'notavailable')}/>
 				</a>
 				<a href={yt} target="_new" onClick={this.onClick}>
-					<img src="./img/icons/yt.png" style={style} className={"img-thumbnail " + (this.available(yt) ? "" : 'notavailable')}/>
+					<img src="./img/icons/yt.png" style={style} className={(this.available(yt) ? "" : 'notavailable')}/>
 				</a>
 				<a href={sc} target="_new" onClick={this.onClick}>
-					<img src="./img/icons/sc.png" style={style} className={"img-thumbnail " + (this.available(sc) ? "" : 'notavailable')}/>
+					<img src="./img/icons/sc.png" style={style} className={(this.available(sc) ? "" : 'notavailable')}/>
 				</a>
 			</div>
 

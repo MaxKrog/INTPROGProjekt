@@ -10,23 +10,44 @@ var ArrangeListCellView = React.createClass({
         var model = this.props.model;
         var canMoveUp = model.indexInCollection() > 0 ? true : false;
         var canMoveDown = model.indexInCollection() + 1 < model.collection.length ? true : false;
+        var style = {
+            cursor: "pointer",
+            fontSize: "20px"
+        };
+
         return (
-            <div className="list-group-item" >
-                <div className="row">
-                    <div className="col-md-1 col-xs-1" onClick={this.moveUp}>
-                        <h4> {canMoveUp ? "UP" : ""} </h4>
-                    </div>
-                    <div className="col-md-1 col-xs-1" onClick={this.moveDown}>
-                        <h4> {canMoveDown ? "DOWN" : ""}</h4>
-                    </div>
-                    <div className="col-md-6 col-xs-6">
-                        <h4>{this.props.model.get("title")} <small> {this.props.model.get("artist")}</small></h4>
-                    </div>
-                    <div className="col-md-4 col-xs-4">
-                        <img onClick={this.remove} className="pull-right" src="./img/icons/delete_x.png" width="32" height="32"/>
+            <div>
+                <div className="list-group-item" >
+                    <div className="row">
+                        <div className="col-md-1 col-xs-1">
+                            <div className="row">
+                                <div className="col-md-1 col-xs-1" onClick={this.moveUp}>
+                                    <span className={canMoveUp ? "glyphicon glyphicon-menu-up" : ""}
+                                        style={style}/>
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="col-md-1 col-xs-1" onClick={this.moveDown}>
+                                    <span className={canMoveDown ? "glyphicon glyphicon-menu-down" : ""}
+                                        style={style}/>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-md-9 col-xs-9" style={{borderBottom:"5px"}}>
+                            <h4>{this.props.model.get("title")} <small> {this.props.model.get("artist")}</small></h4>
+                        </div>
+                        <div className="col-md-2 col-xs-2">
+                            <a onClick={this.remove}>
+                                <h4 className="remove text-center">
+                                    <span className="glyphicon glyphicon-remove"/>
+                                </h4>
+                            </a>
+                        </div>
                     </div>
                 </div>
+
             </div>
+            
         );
     },
     
