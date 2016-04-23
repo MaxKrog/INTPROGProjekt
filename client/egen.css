@@ -1,48 +1,55 @@
-			.notavailable {
-				opacity: 0.2;
-			}
+.notavailable {
+	opacity: 0.2;
+}
 
-			.hidden {
-				opacity: 0;
-			}
+.hidden {
+	opacity: 0;
+}
 
-			span.artist {
-				font-size: 2rem;
-			}
+span.artist {
+	font-size: 2rem;
+}
 
-			.panel {
-				border: none;
-			}
+.panel {
+	border: none;
+}
 
-			.list-group-item {
-				border: none;
-			}
+.list-group-item {
+	border: none;
+}
 
-			a.list-group-item:focus, a.list-group-item:hover, button.list-group-item:hover {
+a.list-group-item:focus, a.list-group-item:hover, button.list-group-item:hover {
 
-			}
+}
 
-			a.remove {
-				color: red;
-			}
+a.remove {
+	color: red;
+}
 
-			a.remove:hover {
-				cursor: pointer;
-			}
+a.remove:hover {
+	cursor: pointer;
+}
 
-			a > h4.remove {
-				color:red;
-			}
+a > h4.remove {
+	color:red;
+}
 
-			a > h4.remove:hover {
-				cursor: pointer;
-			}
+a > h4.remove:hover {
+	cursor: pointer;
+}
 
-			.arrange {
-				font-size: 20px;
-				cursor: pointer;
-			}
+.arrange {
+	font-size: 20px;
+	cursor: pointer;
+}
 
-			.hrline {
-				border-bottom: 1px solid;
-			}
+.hrline {
+	border-bottom: 1px solid;
+}
+
+.navactive {
+	background-color: black;
+}
+.navbar-nav>li>a.navactive:hover {
+	background-color: black;
+}
