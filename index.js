@@ -5,7 +5,7 @@ app.use(express.static('client'));
 //MONGOOSE
 var mongoose = require("mongoose");
 mongoose.set("debug", true);
-var mongoURI = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || "mongodb://localhost/TracklistDB";
+var mongoURI = process.env.MONGOLDB_URI || process.env.MONGOHQ_URL || "mongodb://localhost/TracklistDB";
 mongoose.connect(mongoURI);
 
 //BODYPARSING. Exposes req.body, where you can get params sent etc.
