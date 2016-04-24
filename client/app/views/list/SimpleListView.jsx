@@ -14,14 +14,15 @@ var SimpleListView = React.createClass({
 
 
 	render: function(){
-
+		var _this = this;
+		
 		if(this.props.type === "unordered"){
 			var rows = this.props.collection.models.map(function(model){
 				return <SimpleListUnorderedCellView model={model} key={model.id} />
 			})
 		} else {
 			var rows = this.props.collection.models.map(function(model){
-				return <SimpleListOrderedCellView model={model} key={model.id} />
+				return <SimpleListOrderedCellView model={model} collection={_this.props.collection} key={model.id} />
 			})
 		}
 

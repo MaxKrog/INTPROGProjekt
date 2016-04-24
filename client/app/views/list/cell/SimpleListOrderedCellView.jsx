@@ -7,7 +7,8 @@ var OrderedListCellView = React.createClass({
 	},
 	
 	propTypes: {
-		model: React.PropTypes.object.isRequired //A Backbone-Model
+		model: React.PropTypes.object.isRequired, //A Backbone-Model
+		collection: React.PropTypes.object.isRequired
 	},
 
 	render: function(){
@@ -21,7 +22,7 @@ var OrderedListCellView = React.createClass({
 				<button onClick={this.navigate} className="list-group-item">
 					<div className="row">
 						<div className="col-md-1 col-xs-1">
-							<h4> {this.props.model.indexInCollection() + 1}. </h4>
+							<h4> {this.props.collection.indexOf(this.props.model) + 1}. </h4>
 						</div>
 						<div className="col-md-7 col-sm-4 col-xs-5">
 							<h4>{this.props.model.get("title")} <small> {this.props.model.get("artist")}</small></h4>
