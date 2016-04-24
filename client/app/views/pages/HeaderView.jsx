@@ -37,14 +37,25 @@ var HeaderView = React.createClass({
 					<nav className="navbar navbar-default">
 						<div className="container-fluid">
 							<div className="navbar-header">
-								<a className="navbar-brand" href="#">{user.get("username")}</a>
+								<a href="#" className="navbar-left"><img src="./img/logo3.png" width="90px" height="41px"/></a>
 							</div>
-							<ul className="nav navbar-nav"> 
+
+							<ul className="nav navbar-nav navbar-left"> 
 								<li><IndexLink to="/" activeClassName="active"> Latest Tracklists </IndexLink></li>
 								{user.isAuthorized() && <li><Link to="/add/tracklist" activeClassName="active"> Add New Tracklist </Link></li>}
+							</ul>
+							<ul className="nav navbar-nav navbar-right">
+								<li>
+									{user.isAuthorized() && 
+										<p className="navbar-text">
+											Logged in as: <i>{user.get("username")}</i> 
+										</p>
+									}
+								</li>
 								{toggleLogin}
 							</ul>
 						</div>
+
 					</nav>
 				</section>
 
