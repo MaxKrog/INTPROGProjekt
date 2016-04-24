@@ -58,3 +58,8 @@ a > h4.remove:hover {
 	background-color: transparent;
 	color: #d9230f;
 }
+
+.socialviewlist {
+	margin-top: 5.5px;
+	margin-bottom: 5.5px;
+}

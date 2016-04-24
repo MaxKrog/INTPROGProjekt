@@ -23,8 +23,8 @@ module.exports = React.createClass({
 		var sc = this.props.model.get("soundcloud");
 
 		var style = {
-			width: "32px",
-			height: "32px",
+			width: "30px",
+			height: "30px",
 			marginRight: this.props.marginRight || "20px"
 		}
 		return (

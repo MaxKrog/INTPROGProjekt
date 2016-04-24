@@ -35,12 +35,10 @@ var InfoView = React.createClass({
 						
 					<h3>{this.props.model.get("title")}</h3><br/>
 					by <span className="artist">{this.props.model.get("artist")}</span>
-					<br/><br/>
 					<i>
-						{this.props.model.get("genre")}<br/>
-						{this.props.model.get("length")} {this.props.model.get("length") ? "minutes" : ""}
+						{this.props.model.get("genre") ? [<br/>,<br/>,this.props.model.get("genre"),<br/>] : ""}
+						{this.props.model.get("length") ? (this.props.model.get("length") + " minutes") : ""}
 					</i>
-					<br/>
 					<h2><InfoSocialView model={this.props.model} marginRight="10px" /></h2>
 					{/*
 					<InfoCellView model={this.props.model} keyName={"title"} />

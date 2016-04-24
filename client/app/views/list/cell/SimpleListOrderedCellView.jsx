@@ -27,7 +27,9 @@ var OrderedListCellView = React.createClass({
 							<h4>{this.props.model.get("title")} <small> {this.props.model.get("artist")}</small></h4>
 						</div>
 						<div className="col-md-4 col-sm-7">
-							<span className="pull-right"><InfoSocialView model={this.props.model} marginRight={"10px"} /></span>
+							<span className="pull-right socialviewlist">
+								<InfoSocialView model={this.props.model} marginRight={"10px"} />
+							</span>
 						</div>
 					</div>
 				</button>
