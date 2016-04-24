@@ -3,13 +3,15 @@ var React = require("react");
 var ArrangeListCellView = React.createClass({
     
     propTypes: {
-        model: React.PropTypes.object.isRequired //Backbone.Model:
+        model: React.PropTypes.object.isRequired, //Backbone.Model:
+        collection: React.PropTypes.object.isRequired
     },
     
     render: function(){
         var model = this.props.model;
-        var canMoveUp = model.indexInCollection() > 0 ? true : false;
-        var canMoveDown = model.indexInCollection() + 1 < model.collection.length ? true : false;
+        var collection = this.props.collection;
+        var canMoveUp = collection.indexOf(model) > 0 ? true : false;
+        var canMoveDown = collection.indexOf(model) + 1 < collection.length ? true : false;
         var style = {
             cursor: "pointer",
             fontSize: "20px"
@@ -21,14 +23,14 @@ var ArrangeListCellView = React.createClass({
                     <div className="row">
                         <div className="col-md-1 col-xs-1">
                             <div className="row">
-                                <div className="col-md-1 col-xs-1" onClick={this.moveUp}>
-                                    <span className={canMoveUp ? "glyphicon glyphicon-menu-up" : ""}
+                                <div className="col-md-1 col-xs-1" >
+                                    <span onClick={this.moveUp} className={canMoveUp ? "glyphicon glyphicon-menu-up" : ""}
                                         style={style}/>
                                 </div>
                             </div>
                             <div className="row">
-                                <div className="col-md-1 col-xs-1" onClick={this.moveDown}>
-                                    <span className={canMoveDown ? "glyphicon glyphicon-menu-down" : ""}
+                                <div className="col-md-1 col-xs-1" >
+                                    <span onClick={this.moveDown} className={canMoveDown ? "glyphicon glyphicon-menu-down" : ""}
                                         style={style}/>
                                 </div>
                             </div>
@@ -52,15 +54,15 @@ var ArrangeListCellView = React.createClass({
     },
     
     moveUp: function(){
-        this.props.model.collection.moveUp(this.props.model)    
+        this.props.collection.moveUp(this.props.model)    
     },
     
     moveDown: function() {
-        this.props.model.collection.moveDown(this.props.model);
+        this.props.collection.moveDown(this.props.model);
     },
     
     remove: function(){
-        this.props.model.collection.remove(this.props.model);
+        this.props.collection.remove(this.props.model);
     }
 });
 

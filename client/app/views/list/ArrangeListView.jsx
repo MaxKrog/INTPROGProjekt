@@ -16,7 +16,7 @@ var ArrangeListView = React.createClass({
 		var _this = this;
 
 		var rows = this.props.collection.map(function(model){
-			return <ArrangeListCellView model={model} key={model.id} />
+			return <ArrangeListCellView model={model} collection={_this.props.collection } key={model.id} />
 		})
 
 		return(

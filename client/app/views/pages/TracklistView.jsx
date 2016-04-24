@@ -47,6 +47,20 @@ module.exports = React.createClass({
 			</div>
 		)
 	},
+	
+	editing: function() {
+		if(this.state.editing){
+			return (
+				<div>
+					<ArrangeListView collection={this.props.model.tracks} />
+					<br/><h4 className="text-center">Add tracks to tracklist:</h4>
+					<AddTrackstoTracklistView collection={this.props.model.tracks}/>
+				</div>
+			)
+		} else {
+			return <SimpleListView collection={this.props.model.tracks} type="ordered" />
+		}
+	},
 
 	edit: function() {
 		this.setState({editing: true});
@@ -77,19 +91,5 @@ module.exports = React.createClass({
 
 	delete: function() {
 		alert("Delete " + this.props.model.get("title") + "?");
-	},
-
-	editing: function() {
-		if(this.state.editing){
-			return (
-				<div>
-					<ArrangeListView collection={this.props.model.tracks} />
-					<br/><h4 className="text-center">Add tracks to tracklist:</h4>
-					<AddTrackstoTracklistView collection={this.props.model.tracks}/>
-				</div>
-			)
-		} else {
-			return <SimpleListView collection={this.props.model.tracks} type="ordered" />
-		}
 	}
 });

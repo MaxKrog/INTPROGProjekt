@@ -32,10 +32,6 @@ var TrackModel = Backbone.Model.extend({
 
 	},
 
-	indexInCollection: function(){
-		return this.collection.indexOf(this);
-	},
-
 	createdByUser: function() {
 		var user = require("./UserModel.js");
 

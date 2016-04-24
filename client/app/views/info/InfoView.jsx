@@ -40,14 +40,6 @@ var InfoView = React.createClass({
 						{this.props.model.get("length") ? (this.props.model.get("length") + " minutes") : ""}
 					</i>
 					<h2><InfoSocialView model={this.props.model} marginRight="10px" /></h2>
-					{/*
-					<InfoCellView model={this.props.model} keyName={"title"} />
-					<InfoCellView model={this.props.model} keyName={"artist"} />
-					<InfoCellView model={this.props.model} keyName={"genre"} />
-					<InfoCellView model={this.props.model} keyName={"length"} />
-					<InfoCellView model={this.props.model} keyName={"createdBy"} />
-					<InfoSocialView model={this.props.model} />*/}
-
 				</div>
 				);
 		}

@@ -5,6 +5,7 @@ var TrackModel = require("../../models/TrackModel.js");
 
 //COLLECTIONS:
 var TrackCollection = require("../../collections/TrackCollection");
+
 //VIEWS:
 var InfoView = require("../info/InfoView.jsx");
 var SelectListView = require("../list/SelectListView.jsx");
@@ -21,7 +22,7 @@ module.exports = React.createClass({
 		return {
 			trackModel: new TrackModel(),
 			filterString: "",
-			inputMode: "search",
+			inputMode: "search", //"search" or "new"
 		}
 	},
 
@@ -30,9 +31,10 @@ module.exports = React.createClass({
 		return(
 			<div>
 				<div>
-					<p className="text-center">				
+					<p className="text-center">
+						{this.state.inputMode === "new" && <button onClick={this.toggleInputMode} className="btn btn-warning go inline" type="button"> Cancel </button>}
 						{this.state.inputMode === "new" && <button onClick={this.addNewTrack} className="btn btn-success go inline" type="button"> Save and add track </button>}
-						{this.state.inputMode === "search" && <button onClick={this.inputModeNew} className="btn btn-default go inline" type="button"> Create a new Track</button>}
+						{this.state.inputMode === "search" && <button onClick={this.toggleInputMode} className="btn btn-default go inline" type="button"> Create a new Track</button>}
 					</p>
 					<input 
 						onFocus={this.searchFocus}
@@ -55,9 +57,9 @@ module.exports = React.createClass({
 		})
 	},
 
-	inputModeNew: function(){
+	toggleInputMode: function(){
 		this.setState({
-			inputMode: "new"
+			inputMode: (this.state.inputMode === "search" ? "new" : "search")
 		});
 	},
 

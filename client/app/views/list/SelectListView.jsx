@@ -11,7 +11,7 @@ var SelectListView = React.createClass({
 	mixins: [backboneMixin],
 
 	propTypes: {
-		collection: React.PropTypes.object.isRequired //A Backbone-Collection of tracks
+		collection: React.PropTypes.object.isRequired //A Backbone-Collection of tracks. Sitting on TracklistModel.tracks
 	},
 	
 	getInitialState: function() {
@@ -24,7 +24,7 @@ var SelectListView = React.createClass({
 		var _this = this;
 
 		var rows = this.state.trackCollection.models.map(function(model){
-			return <SelectListCellView model={model} key={model.id} onClick={_this.onClick} />
+			return <SelectListCellView model={model} key={model.id} collection={_this.props.collection}/>
 		})
 
 		return(
@@ -32,11 +32,6 @@ var SelectListView = React.createClass({
 				{rows}
 			</div>
 		)
-	},
-
-	onClick: function(model) {
-		console.log(model);
-		this.props.collection.add(model);
 	}
 
 
