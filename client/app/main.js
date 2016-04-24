@@ -7,6 +7,8 @@ var Route = require('react-router').Route;
 
 var HeaderView = require("./views/pages/HeaderView.jsx");
 var TracklistListView = require("./views/pages/TracklistListView.jsx");
+var TracksListView = require("./views/pages/TracksListView.jsx");
+
 var TracklistViewPresenter = require("./views/pages/TracklistViewPresenter.jsx");
 var TrackViewPresenter = require("./views/pages/TrackViewPresenter.jsx");
 var AddTracklistView = require("./views/pages/AddTracklistView.jsx");
@@ -19,6 +21,7 @@ ReactDOM.render(
 		<Router history={HashHistory} >
 			<Route path="/" component={HeaderView}>
 				<IndexRoute component={TracklistListView} />
+				<Route path="/tracks" component={TracksListView} />
 				<Route path="/tracklist/:id" component={TracklistViewPresenter} />
 				<Route path="/track/:id" component={TrackViewPresenter} />
 				
