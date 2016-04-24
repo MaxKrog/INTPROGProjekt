@@ -8,14 +8,13 @@ var UnorderedListCellView = React.createClass({
 	},
 
 	render: function(){
-		var imgURL = this.props.model.get("type") === "track" ? "./img/track.jpeg" : "./img/tracklist.jpeg";
 		var href = "/" + this.props.model.get("type") + "/" + this.props.model.id;
 		return(
 			<Link className="list-group-item" to={href} >
 				<div className="media">
 					<div className="media-left">
 						{/*<img className="media-object" src={imgURL} style={{maxWidth:"44px"}}/>*/}
-						<span className="glyphicon glyphicon-music" style={{maxWidth:"44px"}}></span>
+						<span className="glyphicon glyphicon-music" style={{maxWidth:"44px", fontSize:"2rem", marginTop:"2px"}}></span>
 					</div>
 					<div className="media-body">
 						<h4 className="media-heading">{this.props.model.get("title")}</h4>
