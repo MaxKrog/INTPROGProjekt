@@ -23,6 +23,11 @@ var TrackStore =  function () {
 				callback(null, data);
 			});
 
+		},
+
+		search: function(filter){
+			trackCollection.getByFilter(filter);
+			return trackCollection;
 		}
 	}
 }

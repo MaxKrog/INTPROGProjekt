@@ -21,7 +21,7 @@ module.exports = React.createClass({
 		return {
 			trackModel: new TrackModel(),
 			filterString: "",
-			inputMode: "search"
+			inputMode: "search",
 		}
 	},
 
@@ -34,7 +34,13 @@ module.exports = React.createClass({
 						{this.state.inputMode === "new" && <button onClick={this.addNewTrack} className="btn btn-success go inline" type="button"> Save and add track </button>}
 						{this.state.inputMode === "search" && <button onClick={this.inputModeNew} className="btn btn-default go inline" type="button"> Create a new Track</button>}
 					</p>
-					<input onFocus={this.searchFocus} type="text" className="form-control" placeholder="Search for an existing track" />
+					<input 
+						onFocus={this.searchFocus}
+						onChange={this.handleFilterChange}
+						value={this.state.filterString} 
+						type="text" 
+						className="form-control" 
+						placeholder="Search for an existing track" />
 				</div>
 
 				{this.state.inputMode === "new " && <InfoView model={this.state.trackModel} editing={true} />}
@@ -71,7 +77,11 @@ module.exports = React.createClass({
 		} else if (this.state.inputMode === "search"){ //Add an already existing track to tracklist-tracks.
 
 		}
+	},
 
-
+	handleFilterChange: function(e){
+		this.setState({
+			filterString: e.target.value
+		});
 	}
 });

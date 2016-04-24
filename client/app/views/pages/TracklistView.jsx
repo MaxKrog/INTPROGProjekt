@@ -80,7 +80,6 @@ module.exports = React.createClass({
 	},
 
 	editing: function() {
-		console.log("hej")
 		if(this.state.editing){
 			return (
 				<div>

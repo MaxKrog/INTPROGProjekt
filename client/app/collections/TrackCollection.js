@@ -18,7 +18,6 @@ var TrackCollection = Backbone.Collection.extend({
 
 	parse: function(data){
 		console.log("Here i can parse the data:");
-		console.log(data);
 
 		return data;
 	},
