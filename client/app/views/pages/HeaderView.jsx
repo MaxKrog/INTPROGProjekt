@@ -42,6 +42,7 @@ var HeaderView = React.createClass({
 
 							<ul className="nav navbar-nav navbar-left"> 
 								<li><IndexLink to="/" activeClassName="active"> Latest Tracklists </IndexLink></li>
+								<li><IndexLink to="/tracks" activeClassName="active"> Latest Tracks </IndexLink></li>
 								{user.isAuthorized() && <li><Link to="/add/tracklist" activeClassName="active"> Add New Tracklist </Link></li>}
 							</ul>
 							<ul className="nav navbar-nav navbar-right">

@@ -5,7 +5,7 @@ app.use(express.static('client'));
 //MONGOOSE
 var mongoose = require("mongoose");
 mongoose.set("debug", true);
-var mongoURI = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || "mongodb://localhost/TracklistDB";
+var mongoURI = process.env.MONGODB_URI || process.env.MONGOHQ_URL || "mongodb://localhost/TracklistDB";
 mongoose.connect(mongoURI);
 
 //BODYPARSING. Exposes req.body, where you can get params sent etc.
@@ -48,6 +48,7 @@ app.use(function(err, req, res, next) {
 });
 
 //START the server
-var server = app.listen(3000, function() {
-  console.log('Express server listening on port ' + server.address().port);
+var port = process.env.PORT || 3000;
+var server = app.listen(port, function() {
+  console.log('Express server listening on port ' + port);
 });
