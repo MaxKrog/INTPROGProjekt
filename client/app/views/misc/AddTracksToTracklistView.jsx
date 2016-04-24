@@ -32,7 +32,7 @@ module.exports = React.createClass({
 				<div>
 					<p className="text-center">				
 						{this.state.inputMode === "new" && <button onClick={this.addNewTrack} className="btn btn-success go inline" type="button"> Save and add track </button>}
-						{this.state.inputMode === "search" && <button onClick={this.inputModeNew} className="btn btn-default go inline" type="button"> Add a new Track</button>}
+						{this.state.inputMode === "search" && <button onClick={this.inputModeNew} className="btn btn-default go inline" type="button"> Create a new Track</button>}
 					</p>
 					<input onFocus={this.searchFocus} type="text" className="form-control" placeholder="Search for an existing track" />
 				</div>

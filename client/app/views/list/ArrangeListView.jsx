@@ -1,6 +1,7 @@
 var React = require("react");
 var backboneMixin = require('backbone-react-component');
 
+
 //VIEWS:
 var ArrangeListCellView = require("./cell/ArrangeListCellView.jsx");
 

@@ -23,10 +23,10 @@ var OrderedListCellView = React.createClass({
 						<div className="col-md-1 col-xs-1">
 							<h4> {this.props.model.indexInCollection() + 1}. </h4>
 						</div>
-						<div className="col-md-7 col-xs-7">
+						<div className="col-md-7 col-sm-4 col-xs-5">
 							<h4>{this.props.model.get("title")} <small> {this.props.model.get("artist")}</small></h4>
 						</div>
-						<div className="col-md-4 col-xs-4">
+						<div className="col-md-4 col-sm-7">
 							<span className="pull-right"><InfoSocialView model={this.props.model} marginRight={"10px"} /></span>
 						</div>
 					</div>

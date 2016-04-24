@@ -33,10 +33,10 @@ var ArrangeListCellView = React.createClass({
                                 </div>
                             </div>
                         </div>
-                        <div className="col-md-9 col-xs-9" style={{borderBottom:"5px"}}>
+                        <div className="col-md-9 col-sm-7 col-xs-7" style={{borderBottom:"5px"}}>
                             <h4>{this.props.model.get("title")} <small> {this.props.model.get("artist")}</small></h4>
                         </div>
-                        <div className="col-md-2 col-xs-2">
+                        <div className="col-md-2 col-sm-4">
                             <a onClick={this.remove}>
                                 <h4 className="remove text-center">
                                     <span className="glyphicon glyphicon-remove"/>

@@ -37,9 +37,9 @@ var HeaderView = React.createClass({
 		var user = this.state.user
 
 		if(user.isAuthorized()){
-			var toggleLogin = <li><Link to="/logout" activeClassName="navactive"> Log out </Link></li>;
+			var toggleLogin = <li><Link to="/logout" activeClassName="active"> Log out </Link></li>;
 		} else {
-			var toggleLogin = <li><Link to="/login" activeClassName="navactive"> Log in </Link></li>;
+			var toggleLogin = <li><Link to="/login" activeClassName="active"> Log in </Link></li>;
 		}
 
 		return (
@@ -52,8 +52,8 @@ var HeaderView = React.createClass({
 								<a className="navbar-brand" href="#">{user.get("username")}</a>
 							</div>
 							<ul className="nav navbar-nav"> 
-								<li><IndexLink to="/" activeClassName="navactive"> Latest Tracklists </IndexLink></li>
-								<li><Link to="/add/tracklist" activeClassName="navactive"> Add New Tracklist </Link></li>
+								<li><IndexLink to="/" activeClassName="active"> Latest Tracklists </IndexLink></li>
+								<li><Link to="/add/tracklist" activeClassName="active"> Add New Tracklist </Link></li>
 								{toggleLogin}
 							</ul>
 						</div>

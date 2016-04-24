@@ -47,9 +47,14 @@ a > h4.remove:hover {
 	border-bottom: 1px solid;
 }
 
-.navactive {
-	background-color: black;
+.navbar-nav>li>a.active {
+	color: #d9230f;
 }
-.navbar-nav>li>a.navactive:hover {
-	background-color: black;
+.navbar-nav>li>a.vactive:hover {
+	color: #d9230f;
+}
+
+.navbar-default .navbar-nav>li>a:hover {
+	background-color: transparent;
+	color: #d9230f;
 }
