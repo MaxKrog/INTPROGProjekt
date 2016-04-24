@@ -16,7 +16,9 @@ var SimpleListView = React.createClass({
 	render: function(){
 		var _this = this;
 		
-		if(this.props.type === "unordered"){
+		if(this.props.collection.length === 0) {
+			rows = <div> There appears to be nothing here. </div>
+		} else if(this.props.type === "unordered"){
 			var rows = this.props.collection.models.map(function(model){
 				return <SimpleListUnorderedCellView model={model} key={model.id} />
 			})

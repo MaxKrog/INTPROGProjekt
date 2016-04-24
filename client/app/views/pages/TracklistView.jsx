@@ -12,6 +12,9 @@ var AddTrackstoTracklistView = require("../misc/AddTrackstoTracklistView.jsx");
 
 module.exports = React.createClass({
 
+	contextTypes: {
+		router: React.PropTypes.object
+	},
 	propTypes: {
 		model: React.PropTypes.object.isRequired //A Backbone-Model
 	},
@@ -68,20 +71,13 @@ module.exports = React.createClass({
 	},
 
 	cancel: function () {
-		if( this.props.model.isNew()){
-			console.log("SHOULD BACK TO LATEST URL");
-		} else {
-			this.props.model.resetToBackup();
-			this.setState({
-				editing: false
-			});
-		}
-		
+		this.props.model.resetToBackup();
+		this.setState({
+			editing: false
+		});
 	},
-
 	save: function() {
 		var _this = this;
-
 		this.props.model.save().done(function(){
 			_this.setState({
 				editing: false
@@ -90,6 +86,10 @@ module.exports = React.createClass({
 	},
 
 	delete: function() {
-		alert("Delete " + this.props.model.get("title") + "?");
+		var _this = this;
+		if (confirm("Delete " + this.props.model.get("title") + "?")) {
+			this.props.model.destroy();
+			this.context.router.push("/");
+		}
 	}
 });

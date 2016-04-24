@@ -8,6 +8,9 @@ var SimpleListView = require("../list/SimpleListView.jsx");
 
 module.exports = React.createClass({
 
+	contextTypes: {
+			router: React.PropTypes.object
+	},
 	propTypes: {
 		model: React.PropTypes.object.isRequired //A Backbone-Model
 	},
@@ -23,8 +26,7 @@ module.exports = React.createClass({
 		var methods = {
 			edit: this.edit,
 			save: this.save,
-			cancel: this.cancel,
-			delete: this.delete
+			cancel: this.cancel
 		};
 
 		var model = this.props.model;
@@ -33,7 +35,7 @@ module.exports = React.createClass({
     		<div>
 	    		<div className="col-md-3" style={{borderRight: "1px solid"}}>
 					<InfoView model={model} editing={this.state.editing} />
-					<ButtonGroupView methods={methods} editing={this.state.editing}  />
+					{this.props.model.createdByUser() && <ButtonGroupView methods={methods} editing={this.state.editing}  /> }
 				</div>
 			
 				<div className="col-md-9">	
@@ -68,12 +70,6 @@ module.exports = React.createClass({
 			_this.setState({
 				editing: false
 			});
-		})
-	},
-
-	delete: function() {
-		this.props.model.destroy().done(function(){
-			console.log("DESTROYED, REDIRECT!");
 		})
 	}
 });

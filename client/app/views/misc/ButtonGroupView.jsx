@@ -14,9 +14,7 @@ module.exports = React.createClass({
 						<a onClick={methods.save} className="btn btn-success"> Save </a>
 					</div>
 		
-					<a className="pull-right" href="javascript:void(0)" onClick={methods.delete}> 
-						<span className="glyphicon glyphicon-trash"/>
-					</a>
+					{methods.delete && <a className="pull-right" href="javascript:void(0)" onClick={methods.delete}> <span className="glyphicon glyphicon-trash"/></a>}
 				</div>
 
 			)

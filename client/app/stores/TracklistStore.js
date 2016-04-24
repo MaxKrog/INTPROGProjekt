@@ -24,6 +24,10 @@ var TracklistStore =  function () {
 				callback(null, data);
 			});
 
+		},
+		
+		getNew: function(){
+			return new TracklistModel();
 		}
 	}
 }

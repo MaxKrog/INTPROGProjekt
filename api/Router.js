@@ -31,6 +31,7 @@ router.get("/track", function(req, res, next){
 router.get("/track/:id", function(req, res, next){
     TrackModel.findById(req.params.id).exec( function(err, data){
         if(err) next(err);
+        if(!data) return res.status(404).send();
 
         TracklistModel.find({"tracks.track": req.params.id}).select("-tracks").exec(function(err, data2){
             if(err) next(err);

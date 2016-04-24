@@ -5,18 +5,6 @@ var IndexLink = require("react-router").IndexLink;
 
 var UserModel = require("../../models/UserModel.js");
 
-
-var NavLink = React.createClass({
-
-	render: function() {
-		return (
-			<Link {...this.props} activeClassName="navactive"/>
-		);		
-	}
-
-});
-
-
 var HeaderView = React.createClass({
 	
 	mixins: [backboneMixin],
@@ -53,7 +41,7 @@ var HeaderView = React.createClass({
 							</div>
 							<ul className="nav navbar-nav"> 
 								<li><IndexLink to="/" activeClassName="active"> Latest Tracklists </IndexLink></li>
-								<li><Link to="/add/tracklist" activeClassName="active"> Add New Tracklist </Link></li>
+								{user.isAuthorized() && <li><Link to="/add/tracklist" activeClassName="active"> Add New Tracklist </Link></li>}
 								{toggleLogin}
 							</ul>
 						</div>

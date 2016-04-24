@@ -9,6 +9,7 @@ var HeaderView = require("./views/pages/HeaderView.jsx");
 var TracklistListView = require("./views/pages/TracklistListView.jsx");
 var TracklistViewPresenter = require("./views/pages/TracklistViewPresenter.jsx");
 var TrackViewPresenter = require("./views/pages/TrackViewPresenter.jsx");
+var AddTracklistView = require("./views/pages/AddTracklistView.jsx");
 
 var LoginViewPresenter = require("./views/login/LoginViewPresenter.jsx");
 var LogoutViewPresenter = require("./views/login/LogoutViewPresenter.jsx");
@@ -20,6 +21,8 @@ ReactDOM.render(
 				<IndexRoute component={TracklistListView} />
 				<Route path="/tracklist/:id" component={TracklistViewPresenter} />
 				<Route path="/track/:id" component={TrackViewPresenter} />
+				
+				<Route path="/add/tracklist" component={AddTracklistView} />
 
 				<Route path="/login" component={LoginViewPresenter} />
 				<Route path="/logout" component={LogoutViewPresenter} />
